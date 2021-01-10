@@ -1,0 +1,50 @@
+@page "/pieceofwork/new"
+@page "/pieceofwork/{Id:int}/edit"
+@using Microsoft.AspNetCore.Authorization
+@namespace Jhipster.Client.Pages.Entities.PieceOfWork
+
+@attribute [Authorize(Roles = "ROLE_USER")]
+
+<div class="row justify-content-center">
+    <div class="col-8">
+        <EditForm Model="@PieceOfWorkModel" OnValidSubmit="@Save">
+            <h2 id="jhi-pieceofwork-heading">Create or edit a PieceOfWork</h2>
+            <div>
+                @*
+                    TODO ADD ERROR
+                    <jhi-alert-error></jhi-alert-error>
+                *@
+
+                @if (Id != 0)
+                {
+                    <div class="form-group">
+                        <label for="id">ID</label>
+                        <input type="text" class="form-control" id="id" name="id" readonly @bind-value="@PieceOfWorkModel.Id" />
+                    </div>
+                }
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_title">Title</label>
+                    <input type="text" class="form-control" name="title" id="field_title"
+                            @bind-value="@PieceOfWorkModel.Title" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                            @bind-value="@PieceOfWorkModel.Description" />
+                </div>
+
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" @onclick="Back">
+                    <Icon Name='"fa-ban"' />&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" class="btn btn-primary">
+                    <Icon Name='"fa-save"' />&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </EditForm>
+    </div>
+</div>

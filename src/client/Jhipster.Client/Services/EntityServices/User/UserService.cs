@@ -4,14 +4,16 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using AutoMapper;
 using Jhipster.Client.Models;
+using Jhipster.Dto;
 using Microsoft.AspNetCore.Components.Authorization;
 
 namespace Jhipster.Client.Services.EntityServices.User
 {
-    public class UserService : AbstractEntityService<UserModel>,IUserService
+    public class UserService : AbstractEntityService<UserModel, UserDto>, IUserService
     {
-        public UserService(HttpClient httpClient, AuthenticationStateProvider authenticationStateProvider) : base(httpClient, authenticationStateProvider, "/api/users")
+        public UserService(HttpClient httpClient, AuthenticationStateProvider authenticationStateProvider, IMapper mapper) : base(httpClient, authenticationStateProvider, mapper, "/api/users")
         {
         }
 

@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 
 namespace Jhipster.Client.Pages.Admin.UserManagement
 {
-    public partial class UserManagement
+    public partial class UserManagement : ComponentBase
     {
         private IList<UserModel> UserModels { get; set; }
 
@@ -25,17 +25,17 @@ namespace Jhipster.Client.Pages.Admin.UserManagement
         [Inject]
         private AuthenticationStateProvider AuthenticationStateProvider { get; set; }
 
-        private IAuthenticationService AuthenticationService => AuthenticationStateProvider as IAuthenticationService; 
+        private IAuthenticationService AuthenticationService => AuthenticationStateProvider as IAuthenticationService;
 
         protected override async Task OnInitializedAsync()
         {
             UserModels = await UserService.GetAll();
         }
-        
+
         private async Task ActiveUser(UserModel user, bool activated)
         {
             user.Activated = activated;
-            await UserService.Update(user); 
+            await UserService.Update(user);
         }
 
         private async Task DeleteUser(string login)

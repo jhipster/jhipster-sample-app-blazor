@@ -3,6 +3,9 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoFixture;
 using Blazored.Modal.Services;
+using Blazorise;
+using Blazorise.Bootstrap;
+using Blazorise.Icons.FontAwesome;
 using Bunit;
 using Bunit.Rendering;
 using FluentAssertions;
@@ -29,10 +32,15 @@ namespace Jhipster.Client.Test.Pages.Admin.UserManagement
         {
             _userService = new Mock<IUserService>();
             _navidationService = new Mock<INavigationService>();
+            Services.AddBlazorise(options =>
+                {
+                    options.ChangeTextOnKeyPress = true;
+                })
+                .AddBootstrapProviders()
+                .AddFontAwesomeIcons();
             Services.AddSingleton<IUserService>(_userService.Object);
             Services.AddSingleton<INavigationService>(_navidationService.Object);
         }
-
 
         [Fact]
         public void Should_DisplayUserLogin_When_IdIsPresent()
@@ -41,7 +49,6 @@ namespace Jhipster.Client.Test.Pages.Admin.UserManagement
             var user = _fixture.Create<UserModel>();
             _userService.Setup(service => service.Get(It.IsAny<string>())).Returns(Task.FromResult(user));
             var userDetail = RenderComponent<UserDetail>(ComponentParameter.CreateParameter("Id", "test"));
-            
 
             // Act
             var title = userDetail.Find("h2");
@@ -57,7 +64,7 @@ namespace Jhipster.Client.Test.Pages.Admin.UserManagement
             //Arrange
             _userService.Setup(service => service.Get(It.IsAny<string>())).Returns(Task.FromResult(new UserModel()));
             var userDetail = RenderComponent<UserDetail>();
-            
+
             // Act
             var title = userDetail.Find("div.col-8");
 

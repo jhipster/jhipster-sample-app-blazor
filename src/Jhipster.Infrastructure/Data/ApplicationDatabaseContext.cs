@@ -1,15 +1,18 @@
 using Jhipster.Domain;
 using Jhipster.Domain.Interfaces;
+using Jhipster.Crosscutting.Enums;
 using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Jhipster.Infrastructure.Data {
+namespace Jhipster.Infrastructure.Data
+{
     public class ApplicationDatabaseContext : IdentityDbContext<
         User, Role, string,
         IdentityUserClaim<string>,
@@ -17,13 +20,23 @@ namespace Jhipster.Infrastructure.Data {
         IdentityUserLogin<string>,
         IdentityRoleClaim<string>,
         IdentityUserToken<string>
-    > {
+    >
+    {
         private readonly IHttpContextAccessor _httpContextAccessor;
-        
+
         public ApplicationDatabaseContext(DbContextOptions<ApplicationDatabaseContext> options, IHttpContextAccessor httpContextAccessor) : base(options)
         {
             _httpContextAccessor = httpContextAccessor;
         }
+
+        public DbSet<Region> Regions { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<Location> Locations { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<PieceOfWork> PieceOfWorks { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Job> Jobs { get; set; }
+        public DbSet<JobHistory> JobHistories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -37,9 +50,10 @@ namespace Jhipster.Infrastructure.Data {
             builder.Entity<IdentityUserLogin<string>>().ToTable("UserLogins");
             builder.Entity<IdentityRoleClaim<string>>().ToTable("RoleClaims");
             builder.Entity<IdentityUserToken<string>>().ToTable("UserTokens");
-    
-            builder.Entity<UserRole>(userRole => {
-                userRole.HasKey(ur => new {ur.UserId, ur.RoleId});
+
+            builder.Entity<UserRole>(userRole =>
+            {
+                userRole.HasKey(ur => new { ur.UserId, ur.RoleId });
 
                 userRole.HasOne(ur => ur.Role)
                     .WithMany(r => r.UserRoles)
@@ -58,6 +72,18 @@ namespace Jhipster.Infrastructure.Data {
                 .HasForeignKey(e => e.UserId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Job>()
+                .HasMany(x => x.Chores)
+                .WithMany(x => x.Jobs)
+                .UsingEntity<Dictionary<string, object>>(
+                    "JobChores",
+                    x => x.HasOne<PieceOfWork>().WithMany(),
+                    x => x.HasOne<Job>().WithMany());
+
+            builder.Entity<JobHistory>()
+                .Property(e => e.Language)
+                .HasConversion<string>();
         }
 
         /// <summary>

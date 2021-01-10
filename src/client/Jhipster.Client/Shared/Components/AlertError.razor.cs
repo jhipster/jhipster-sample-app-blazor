@@ -11,7 +11,7 @@ using Toolbelt.Blazor;
 
 namespace Jhipster.Client.Shared.Components
 {
-    public partial class AlertError
+    public partial class AlertError : ComponentBase
     {
         public const string NotFoundError = "Not found";
         public const string NotReachableError = "Server not reachable";
@@ -19,7 +19,7 @@ namespace Jhipster.Client.Shared.Components
 
         private List<JhiAlert> Alerts { get; } = new List<JhiAlert>();
 
-        [Inject] 
+        [Inject]
         private HttpClientInterceptor Interceptor { get; set; }
 
         protected override Task OnInitializedAsync()
@@ -47,7 +47,7 @@ namespace Jhipster.Client.Shared.Components
         public IReadOnlyCollection<JhiAlert> GetAlerts()
         {
             return Alerts.AsReadOnly();
-    }
+        }
 
         private void HandleErrors(object s, HttpClientInterceptorEventArgs e)
         {

@@ -1,0 +1,201 @@
+﻿/*
+* Bootstrap overrides https://getbootstrap.com/docs/4.0/getting-started/theming/
+* All values defined in bootstrap source
+* https://github.com/twbs/bootstrap/blob/v4-dev/scss/_variables.scss can be overwritten here
+* Make sure not to add !default to values here
+*/
+/* ==============================================================
+Bootstrap tweaks
+===============================================================*/
+body,
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 300; }
+
+/* Increase contrast of links to get 100% on Lighthouse Accessability Audit. Override this color if you want to change the link color, or use a Bootswatch theme */
+a {
+  color: #533f03;
+  font-weight: bold; }
+
+a:hover {
+  color: #533f03; }
+
+/* override hover color for dropdown-item forced by bootstrap to all a:not([href]):not([tabindex]) elements in _reboot.scss */
+a.dropdown-item:not([href]):not([tabindex]):hover {
+  color: #16181b; }
+
+/* override .dropdown-item.active background-color on hover */
+.dropdown-item.active:hover {
+  background-color: #9bc2e3; }
+
+a:hover {
+  /* make sure browsers use the pointer cursor for anchors, even with no href */
+  cursor: pointer; }
+
+.dropdown-item:hover {
+  color: #16181b; }
+
+/* ==========================================================================
+Browser Upgrade Prompt
+========================================================================== */
+.browserupgrade {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0; }
+
+/* ==========================================================================
+Generic styles
+========================================================================== */
+/* Error highlight on input fields */
+.ng-valid[required],
+.ng-valid.required {
+  border-left: 5px solid green; }
+
+.ng-invalid:not(form) {
+  border-left: 5px solid red; }
+
+/* other generic styles */
+.jh-card {
+  padding: 1.5%;
+  margin-top: 20px;
+  border: none; }
+
+.error {
+  color: white;
+  background-color: red; }
+
+.pad {
+  padding: 10px; }
+
+.w-40 {
+  width: 40% !important; }
+
+.w-60 {
+  width: 60% !important; }
+
+.break {
+  white-space: normal;
+  word-break: break-all; }
+
+.readonly {
+  background-color: #eee;
+  opacity: 1; }
+
+.footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.125); }
+
+.hand,
+[jhisortby] {
+  cursor: pointer; }
+
+/* ==========================================================================
+Custom alerts for notification
+========================================================================== */
+.alerts .alert {
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis; }
+  .alerts .alert pre {
+    background: none;
+    border: none;
+    font: inherit;
+    color: inherit;
+    padding: 0;
+    margin: 0; }
+  .alerts .alert .popover pre {
+    font-size: 10px; }
+
+.alerts .jhi-toast {
+  position: fixed;
+  width: 100%; }
+  .alerts .jhi-toast.left {
+    left: 5px; }
+  .alerts .jhi-toast.right {
+    right: 5px; }
+  .alerts .jhi-toast.top {
+    top: 55px; }
+  .alerts .jhi-toast.bottom {
+    bottom: 55px; }
+
+@media screen and (min-width: 480px) {
+  .alerts .jhi-toast {
+    width: 50%; } }
+
+/* ==========================================================================
+entity detail page css
+========================================================================== */
+.row.jh-entity-details > dd {
+  margin-bottom: 15px; }
+
+@media screen and (min-width: 768px) {
+  .row.jh-entity-details > dt {
+    margin-bottom: 15px; }
+  .row.jh-entity-details > dd {
+    border-bottom: 1px solid #eee;
+    padding-left: 180px;
+    margin-left: 0; } }
+
+/* ==========================================================================
+ui bootstrap tweaks
+========================================================================== */
+.nav,
+.pagination,
+.carousel,
+.panel-title a {
+  cursor: pointer; }
+
+.thread-dump-modal-lock {
+  max-width: 450px;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  white-space: nowrap; }
+
+/* jhipster-needle-scss-add-main JHipster will add new css style */
+/* ==========================================================================
+Main page styles
+========================================================================== */
+.hipster {
+  display: inline-block;
+  width: 347px;
+  height: 497px;
+  background: url("../images/jhipster_family_member_3.svg") no-repeat center top;
+  background-size: contain; }
+
+/* wait autoprefixer update to allow simple generation of high pixel density media query */
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  .hipster {
+    background: url("../images/jhipster_family_member_3.svg") no-repeat center top;
+    background-size: contain; } }
+
+/* ==========================================================================
+Navbar
+========================================================================== */
+.navbar-version {
+  font-size: 0.65em;
+  color: rgba(255, 255, 255, 0.5); }
+
+.profile-image {
+  height: 1.75em;
+  width: 1.75em; }
+
+.navbar {
+  padding: 0.2rem 1rem; }
+  .navbar ul.navbar-nav .nav-item {
+    margin-left: 0.5em; }
+  .navbar a.nav-link {
+    font-weight: 400; }
+
+/* ==========================================================================
+Logo styles
+========================================================================== */
+.logo-img {
+  height: 45px;
+  width: 45px;
+  display: inline-block;
+  vertical-align: middle;
+  background: url("../images/logo-jhipster.png") no-repeat center center;
+  background-size: contain; }
+/*# sourceMappingURL=wwwroot\content\scss\global.css.map */

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Jhipster.Client.Models;
+using Jhipster.Dto;
 
 namespace Jhipster.Client.Services.EntityServices.User
 {
@@ -18,6 +19,6 @@ namespace Jhipster.Client.Services.EntityServices.User
 
         Task Delete(string id);
 
-        Task<IEnumerable<string>> GetAllAuthorities(); 
+        Task<IEnumerable<string>> GetAllAuthorities();
     }
 }

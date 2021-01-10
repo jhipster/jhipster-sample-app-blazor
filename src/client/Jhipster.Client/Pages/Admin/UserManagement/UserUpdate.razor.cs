@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 
 namespace Jhipster.Client.Pages.Admin.UserManagement
 {
-    public partial class UserUpdate
+    public partial class UserUpdate : ComponentBase
     {
         [Parameter]
         public string Id { get; set; }
@@ -40,7 +40,7 @@ namespace Jhipster.Client.Pages.Admin.UserManagement
             if (!string.IsNullOrWhiteSpace(Id))
             {
                 CurrentUser = await UserService.Get(Id);
-                SelectedAuthorities = CurrentUser.Authorities; 
+                SelectedAuthorities = CurrentUser.Authorities;
                 CurrentAuthorities = new ReadOnlyCollection<string>(CurrentUser.Authorities.ToList());
             }
             else
@@ -53,7 +53,7 @@ namespace Jhipster.Client.Pages.Admin.UserManagement
 
         private void OnSelectAuthoritiesChanged(IReadOnlyList<string> selectedAuthorities)
         {
-            SelectedAuthorities = selectedAuthorities; 
+            SelectedAuthorities = selectedAuthorities;
         }
 
         private async Task Save()

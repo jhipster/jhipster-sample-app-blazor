@@ -1,0 +1,81 @@
+@page "/job/new"
+@page "/job/{Id:int}/edit"
+@using Microsoft.AspNetCore.Authorization
+@namespace Jhipster.Client.Pages.Entities.Job
+
+@attribute [Authorize(Roles = "ROLE_USER")]
+
+<div class="row justify-content-center">
+    <div class="col-8">
+        <EditForm Model="@JobModel" OnValidSubmit="@Save">
+            <h2 id="jhi-job-heading">Create or edit a Job</h2>
+            <div>
+                @*
+                    TODO ADD ERROR
+                    <jhi-alert-error></jhi-alert-error>
+                *@
+
+                @if (Id != 0)
+                {
+                    <div class="form-group">
+                        <label for="id">ID</label>
+                        <input type="text" class="form-control" id="id" name="id" readonly @bind-value="@JobModel.Id" />
+                    </div>
+                }
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_jobTitle">Job Title</label>
+                    <input type="text" class="form-control" name="jobTitle" id="field_jobTitle"
+                            @bind-value="@JobModel.JobTitle" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_minSalary">Min Salary</label>
+                    <input type="text" class="form-control" name="minSalary" id="field_minSalary"
+                            @bind-value="@JobModel.MinSalary" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_maxSalary">Max Salary</label>
+                    <input type="text" class="form-control" name="maxSalary" id="field_maxSalary"
+                            @bind-value="@JobModel.MaxSalary" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_pieceofwork">Chores</label>
+                    <Select  class="form-control" name="pieceofwork"  TValue="long" @bind-SelectedValues="SelectedChores" Multiple="true">
+                        @foreach (var pieceofwork in PieceOfWorkIds)
+                        {
+                            <SelectItem TValue="long" Value="@pieceofwork">@pieceofwork</SelectItem>
+                        }
+                    </Select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_employee">Employees</label>
+                    <select class="form-control" id="field_employee" name="employee" @bind="@EmployeeId">
+                        <option value="0"></option>
+                        @foreach (var employee in EmployeeIds)
+                        {
+                            if (Id != 0 && employee == JobModel?.EmployeeId)
+                            {
+                                <option selected="selected">@employee</option>
+                            }
+                            else
+                            {
+                                <option>@employee</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" @onclick="Back">
+                    <Icon Name='"fa-ban"' />&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" class="btn btn-primary">
+                    <Icon Name='"fa-save"' />&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </EditForm>
+    </div>
+</div>

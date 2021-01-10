@@ -8,12 +8,12 @@ using Microsoft.AspNetCore.Components.Authorization;
 
 namespace Jhipster.Client.Pages
 {
-    public partial class Login
+    public partial class Login : ComponentBase
     {
         [Inject]
         public AuthenticationStateProvider AuthenticationService { get; set; }
-        
-        [CascadingParameter] 
+
+        [CascadingParameter]
         public BlazoredModalInstance BlazoredModal { get; set; }
 
         public LoginModel LoginModel { get; set; } = new LoginModel();
@@ -23,7 +23,7 @@ namespace Jhipster.Client.Pages
         private async Task HandleSubmit()
         {
             var result = await (AuthenticationService as IAuthenticationService).SignIn(LoginModel);
-            IsAuthenticateError = !result; 
+            IsAuthenticateError = !result;
             LoginModel = new LoginModel();
             if (result)
             {

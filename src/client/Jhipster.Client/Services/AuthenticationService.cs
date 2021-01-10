@@ -5,13 +5,15 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using AutoMapper;
 using Blazored.SessionStorage;
 using Jhipster.Client.Models;
+using Jhipster.Dto;
 using Microsoft.AspNetCore.Components.Authorization;
 
 namespace Jhipster.Client.Services
 {
-    public class AuthenticationService : AuthenticationStateProvider,IAuthenticationService
+    public class AuthenticationService : AuthenticationStateProvider, IAuthenticationService
     {
         private const string AuthenticatationUrl = "/api/authenticate";
         private const string AccountUrl = "/api/account";
@@ -20,15 +22,17 @@ namespace Jhipster.Client.Services
 
         private readonly HttpClient _httpClient;
         private readonly ISyncSessionStorageService _sessionStorage;
+        private readonly IMapper _mapper;
 
         public bool IsAuthenticated { get; set; }
         public UserModel CurrentUser { get; set; }
         public JwtToken JwtToken { get; set; }
-        
-        public AuthenticationService(HttpClient httpClient, ISyncSessionStorageService sessionStorage)
+
+        public AuthenticationService(HttpClient httpClient, ISyncSessionStorageService sessionStorage, IMapper mapper)
         {
             _httpClient = httpClient;
             _sessionStorage = sessionStorage;
+            _mapper = mapper;
             _httpClient.BaseAddress = new Uri(Configuration.BaseUri);
             var token = _sessionStorage.GetItem<string>(JhiAuthenticationtoken);
             if (!string.IsNullOrEmpty(token))
@@ -37,14 +41,15 @@ namespace Jhipster.Client.Services
                 SetUserAndAuthorizationHeader(JwtToken);
             }
         }
-        
+
         public async Task<bool> SignIn(LoginModel loginModel)
         {
-            var result = await _httpClient.PostAsJsonAsync(AuthenticatationUrl, loginModel);
+            var loginDto = _mapper.Map<LoginDto>(loginModel);
+            var result = await _httpClient.PostAsJsonAsync(AuthenticatationUrl, loginDto);
             if (result.IsSuccessStatusCode)
             {
                 JwtToken = await result.Content.ReadFromJsonAsync<JwtToken>();
-                _sessionStorage.SetItem(JhiAuthenticationtoken, JwtToken.IdToken); 
+                _sessionStorage.SetItem(JhiAuthenticationtoken, JwtToken.IdToken);
                 await SetUserAndAuthorizationHeader(JwtToken);
             }
             return IsAuthenticated;
@@ -67,7 +72,8 @@ namespace Jhipster.Client.Services
             _httpClient.DefaultRequestHeaders.Add(AuthorizationHeader, $"Bearer {jwtToken.IdToken}");
             try
             {
-                CurrentUser = await _httpClient.GetFromJsonAsync<UserModel>(AccountUrl);
+                var userDto = await _httpClient.GetFromJsonAsync<UserDto>(AccountUrl);
+                CurrentUser = _mapper.Map<UserModel>(userDto);
             }
             catch
             {
@@ -89,19 +95,18 @@ namespace Jhipster.Client.Services
                 AddClaim(ref claims, ClaimTypes.Surname, CurrentUser.LastName);
                 AddClaim(ref claims, "langKey", CurrentUser.LangKey);
                 AddClaim(ref claims, "picture", CurrentUser.ImageUrl);
-                claims.AddRange(CurrentUser.Authorities?.Select(role => new Claim(ClaimTypes.Role,role)) ?? Array.Empty<Claim>());
-                identity = new ClaimsIdentity(claims,"JWT Auth", ClaimTypes.Name, ClaimTypes.Role);
+                claims.AddRange(CurrentUser.Authorities?.Select(role => new Claim(ClaimTypes.Role, role)) ?? Array.Empty<Claim>());
+                identity = new ClaimsIdentity(claims, "JWT Auth", ClaimTypes.Name, ClaimTypes.Role);
             }
 
             return Task.FromResult(new AuthenticationState(new ClaimsPrincipal(identity)));
         }
 
-
-        private void AddClaim(ref List<Claim> claims,string claimType, string value)
+        private void AddClaim(ref List<Claim> claims, string claimType, string value)
         {
             if (!string.IsNullOrEmpty(value))
             {
-                claims.Add(new Claim(claimType,value));
+                claims.Add(new Claim(claimType, value));
             }
         }
     }

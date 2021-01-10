@@ -1,0 +1,77 @@
+@page "/employee/{Id:int}/view"
+@using Microsoft.AspNetCore.Authorization
+@namespace Jhipster.Client.Pages.Entities.Employee
+
+@attribute [Authorize(Roles = "ROLE_USER")]
+
+<div class="row justify-content-center">
+    <div class="col-8">
+        @if (Employee != null && Employee.Id != 0)
+        {
+            <div>
+                <h2><span>Employee</span>@Employee.Id</h2>
+
+                <hr>
+
+                @*<jhi-alert-error></jhi-alert-error>*@
+
+                <dl class="row-md jh-entity-details">
+                    <dt><span>First Name</span></dt>
+                    <dd>
+                        <span>@Employee.FirstName</span>
+                    </dd>
+                    <dt><span>Last Name</span></dt>
+                    <dd>
+                        <span>@Employee.LastName</span>
+                    </dd>
+                    <dt><span>Email</span></dt>
+                    <dd>
+                        <span>@Employee.Email</span>
+                    </dd>
+                    <dt><span>Phone Number</span></dt>
+                    <dd>
+                        <span>@Employee.PhoneNumber</span>
+                    </dd>
+                    <dt><span>Hire Date</span></dt>
+                    <dd>
+                        <span>@Employee.HireDate</span>
+                    </dd>
+                    <dt><span>Salary</span></dt>
+                    <dd>
+                        <span>@Employee.Salary</span>
+                    </dd>
+                    <dt><span>Commission Pct</span></dt>
+                    <dd>
+                        <span>@Employee.CommissionPct</span>
+                    </dd>
+                    <dt><span>Manager</span></dt>
+                    <dd>
+                        @if (Employee.ManagerId != 0)
+                        {
+                            <div>
+                                <a href="/employee/@Employee.Id/view">@Employee.ManagerId</a>
+                            </div>
+                        }
+                    </dd>
+                    <dt><span>Department</span></dt>
+                    <dd>
+                        @if (Employee.DepartmentId != 0)
+                        {
+                            <div>
+                                <a href="/department/@Employee.Id/view">@Employee.DepartmentId</a>
+                            </div>
+                        }
+                    </dd>
+                </dl>
+
+                <button @onclick="Back" class="btn btn-info">
+                    <Icon Name='"fa-arrow-left"' />&nbsp;<span>Back</span>
+                </button>
+
+                <a href="/employee/@Employee.Id/edit" class="btn btn-primary">
+                    <Icon Name='"fa-pencil-alt"' />&nbsp;<span>Edit</span>
+                </a>
+            </div>
+        }
+    </div>
+</div>

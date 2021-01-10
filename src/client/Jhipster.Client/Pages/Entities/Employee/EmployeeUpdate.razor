@@ -1,0 +1,109 @@
+@page "/employee/new"
+@page "/employee/{Id:int}/edit"
+@using Microsoft.AspNetCore.Authorization
+@namespace Jhipster.Client.Pages.Entities.Employee
+
+@attribute [Authorize(Roles = "ROLE_USER")]
+
+<div class="row justify-content-center">
+    <div class="col-8">
+        <EditForm Model="@EmployeeModel" OnValidSubmit="@Save">
+            <h2 id="jhi-employee-heading">Create or edit a Employee</h2>
+            <div>
+                @*
+                    TODO ADD ERROR
+                    <jhi-alert-error></jhi-alert-error>
+                *@
+
+                @if (Id != 0)
+                {
+                    <div class="form-group">
+                        <label for="id">ID</label>
+                        <input type="text" class="form-control" id="id" name="id" readonly @bind-value="@EmployeeModel.Id" />
+                    </div>
+                }
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_firstName">First Name</label>
+                    <input type="text" class="form-control" name="firstName" id="field_firstName"
+                            @bind-value="@EmployeeModel.FirstName" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_lastName">Last Name</label>
+                    <input type="text" class="form-control" name="lastName" id="field_lastName"
+                            @bind-value="@EmployeeModel.LastName" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_email">Email</label>
+                    <input type="text" class="form-control" name="email" id="field_email"
+                            @bind-value="@EmployeeModel.Email" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_phoneNumber">Phone Number</label>
+                    <input type="text" class="form-control" name="phoneNumber" id="field_phoneNumber"
+                            @bind-value="@EmployeeModel.PhoneNumber" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_hireDate">Hire Date</label>
+                    <input type="text" class="form-control" name="hireDate" id="field_hireDate"
+                            @bind-value="@EmployeeModel.HireDate" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_salary">Salary</label>
+                    <input type="text" class="form-control" name="salary" id="field_salary"
+                            @bind-value="@EmployeeModel.Salary" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_commissionPct">Commission Pct</label>
+                    <input type="text" class="form-control" name="commissionPct" id="field_commissionPct"
+                            @bind-value="@EmployeeModel.CommissionPct" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_employee">Managers</label>
+                    <select class="form-control" id="field_employee" name="employee" @bind="@EmployeeId">
+                        <option value="0"></option>
+                        @foreach (var employee in EmployeeIds)
+                        {
+                            if (Id != 0 && employee == EmployeeModel?.ManagerId)
+                            {
+                                <option selected="selected">@employee</option>
+                            }
+                            else
+                            {
+                                <option>@employee</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_department">Departments</label>
+                    <select class="form-control" id="field_department" name="department" @bind="@DepartmentId">
+                        <option value="0"></option>
+                        @foreach (var department in DepartmentIds)
+                        {
+                            if (Id != 0 && department == EmployeeModel?.DepartmentId)
+                            {
+                                <option selected="selected">@department</option>
+                            }
+                            else
+                            {
+                                <option>@department</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" @onclick="Back">
+                    <Icon Name='"fa-ban"' />&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" class="btn btn-primary">
+                    <Icon Name='"fa-save"' />&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </EditForm>
+    </div>
+</div>

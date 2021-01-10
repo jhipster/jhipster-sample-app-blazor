@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace Jhipster.Client.Pages.Admin.UserManagement
 {
-    public partial class UserDetail
+    public partial class UserDetail : ComponentBase
     {
         [Parameter]
         public string Id { get; set; }
@@ -18,13 +18,13 @@ namespace Jhipster.Client.Pages.Admin.UserManagement
         private INavigationService NavigationService { get; set; }
 
         private UserModel CurrentUser { get; set; }
-        
+
         protected override async Task OnInitializedAsync()
         {
             CurrentUser = null;
             if (!string.IsNullOrWhiteSpace(Id))
             {
-                CurrentUser = await UserService.Get(Id); 
+                CurrentUser = await UserService.Get(Id);
             }
         }
 

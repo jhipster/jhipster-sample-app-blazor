@@ -15,7 +15,7 @@ namespace Jhipster.Client.Pages.Account
     public partial class Register : ComponentBase
     {
         [Inject]
-        private IRegisterService RegisterService{ get; set; }
+        private IRegisterService RegisterService { get; set; }
 
         [CascadingParameter]
         private IModalService ModalService { get; set; }
@@ -32,7 +32,6 @@ namespace Jhipster.Client.Pages.Account
         public bool ErrorUserExists { get; private set; }
 
         private bool IsInvalid { get; set; }
-        
 
         protected override async Task OnInitializedAsync()
         {
@@ -62,7 +61,8 @@ namespace Jhipster.Client.Pages.Account
         private async Task HandleSubmit()
         {
             SetAllErrorFalse();
-            var result = await RegisterService.Save(new UserSaveModel{
+            var result = await RegisterService.Save(new UserSaveModel
+            {
                 Email = RegisterModel.Email,
                 Login = RegisterModel.Username,
                 Password = RegisterModel.Password,
@@ -108,7 +108,6 @@ namespace Jhipster.Client.Pages.Account
             {
                 Error = true; // json pars error
             }
-            
         }
 
         private async Task SignIn()

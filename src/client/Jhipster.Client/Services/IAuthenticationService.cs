@@ -13,6 +13,5 @@ namespace Jhipster.Client.Services
         Task<bool> SignIn(LoginModel loginModel);
         public Task SignOut();
 
-
     }
 }

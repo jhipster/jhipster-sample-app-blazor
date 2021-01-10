@@ -25,7 +25,7 @@ namespace Jhipster.Client.Shared
 
         private async Task SignOut()
         {
-            await (AuthenticationService as IAuthenticationService).SignOut(); 
+            await (AuthenticationService as IAuthenticationService).SignOut();
             NavigationManager.NavigateTo("/");
         }
 

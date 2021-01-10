@@ -22,13 +22,13 @@ namespace Jhipster.Client.Test
             Services.AddMockUnAuthenticateAuthorization();
             var authenticationStateProvider = Services.GetService<AuthenticationStateProvider>();
 
-            var index = RenderComponent<Index>(ComponentParameterFactory.CascadingValue(authenticationStateProvider.GetAuthenticationStateAsync()),ComponentParameterFactory.CascadingValue(modalService.Object));
-           
+            var index = RenderComponent<Index>(ComponentParameterFactory.CascadingValue(authenticationStateProvider.GetAuthenticationStateAsync()), ComponentParameterFactory.CascadingValue(modalService.Object));
+
             // Act
             index.Find(".alert-link").Click();
 
             // Assert
-            modalService.Verify(mock => mock.Show<Login>(It.IsAny<string>()),Times.Once());
+            modalService.Verify(mock => mock.Show<Login>(It.IsAny<string>()), Times.Once());
         }
 
         [Fact]
@@ -40,7 +40,7 @@ namespace Jhipster.Client.Test
 
             var claims = new List<Claim>();
             claims.Add(new Claim(ClaimTypes.NameIdentifier, "UserTestLogin"));
-            var claimIdentity  = new ClaimsIdentity(claims);
+            var claimIdentity = new ClaimsIdentity(claims);
             Services.AddMockAuthenticatedAuthorization(claimIdentity);
             var authenticationStateProvider = Services.GetService<AuthenticationStateProvider>();
 

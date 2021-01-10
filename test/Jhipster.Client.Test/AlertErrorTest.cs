@@ -27,7 +27,6 @@ namespace Jhipster.Client.Test
             {
                 StatusCode = HttpStatusCode.NotFound,
                 Content = new StringContent(@""),
-                
             };
 
             var alertComponent = await InitAlertErrorTest(response);
@@ -95,7 +94,7 @@ namespace Jhipster.Client.Test
         public void Should_Add_And_Remove_When_AlertTimout()
         {
             Services.AddHttpClientInterceptor();
-            var alertComponent = RenderComponent<TestAlertError>(); 
+            var alertComponent = RenderComponent<TestAlertError>();
 
             var alert = new JhiAlert
             {

@@ -11,13 +11,12 @@ using Microsoft.AspNetCore.Components.Authorization;
 
 namespace Jhipster.Client.Test.Helpers
 {
-    public class MockAuthenticationService : AuthenticationStateProvider,IAuthenticationService
+    public class MockAuthenticationService : AuthenticationStateProvider, IAuthenticationService
     {
         public ClaimsIdentity Identity { get; set; }
 
         public MockAuthenticationService()
         {
-            
         }
 
         public MockAuthenticationService(ClaimsIdentity identity)
@@ -38,7 +37,7 @@ namespace Jhipster.Client.Test.Helpers
 
         public UserModel CurrentUser
         {
-            get => new UserModel(){Login = Identity?.Claims.FirstOrDefault(c => c.Type.Equals(ClaimTypes.NameIdentifier)).Value};
+            get => new UserModel() { Login = Identity?.Claims.FirstOrDefault(c => c.Type.Equals(ClaimTypes.NameIdentifier)).Value };
             set => throw new NotImplementedException();
         }
 
