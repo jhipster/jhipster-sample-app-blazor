@@ -110,9 +110,10 @@ namespace Jhipster.Client.Pages.Account
             }
         }
 
-        private async Task SignIn()
+        private Task SignIn()
         {
             ModalService.Show<Login>("Sign In");
+            return Task.CompletedTask;
         }
     }
 }

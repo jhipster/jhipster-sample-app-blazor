@@ -1,6 +1,6 @@
 namespace Jhipster.Domain.Repositories.Interfaces
 {
-    public interface IPieceOfWorkRepository : IGenericRepository<PieceOfWork>
+    public interface IPieceOfWorkRepository : IGenericRepository<PieceOfWork, long>
     {
     }
 }

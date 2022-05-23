@@ -18,9 +18,10 @@ namespace Jhipster.Client.Pages
 
         private UserModel CurrentUser => (AuthenticationService as IAuthenticationService)?.CurrentUser;
 
-        private async Task SignIn()
+        private Task SignIn()
         {
             ModalService.Show<Login>("Sign In");
+            return Task.CompletedTask;
         }
 
     }

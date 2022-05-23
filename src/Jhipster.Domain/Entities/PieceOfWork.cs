@@ -7,12 +7,8 @@ using Newtonsoft.Json;
 namespace Jhipster.Domain
 {
     [Table("piece_of_work")]
-    public class PieceOfWork
+    public class PieceOfWork : BaseEntity<long>
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long Id { get; set; }
-
         public string Title { get; set; }
         public string Description { get; set; }
         [JsonIgnore]

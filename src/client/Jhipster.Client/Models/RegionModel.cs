@@ -4,9 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Jhipster.Client.Models
 {
-    public class RegionModel
+    public class RegionModel : BaseModel<long>
     {
-        public long Id { get; set; }
         public string RegionName { get; set; }
     }
 }

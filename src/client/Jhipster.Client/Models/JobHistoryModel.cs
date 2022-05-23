@@ -5,9 +5,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Jhipster.Client.Models
 {
-    public class JobHistoryModel
+    public class JobHistoryModel : BaseModel<long>
     {
-        public long Id { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public Language Language { get; set; }

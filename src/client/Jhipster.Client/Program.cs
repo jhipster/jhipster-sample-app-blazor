@@ -1,6 +1,7 @@
 using System;
 using System.Net.Http;
 using System.Reflection;
+using System.Text.Json;
 using System.Threading.Tasks;
 using AutoMapper;
 using Blazored.Modal;
@@ -23,9 +24,11 @@ using Jhipster.Client.Services.EntityServices.JobHistory;
 // jhipster-needle-add-using-for-services - JHipster will add using services
 using Jhipster.Client.Services.EntityServices.User;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
+using System.Text.Json.Serialization;
 
 namespace Jhipster.Client
 {
@@ -37,33 +40,44 @@ namespace Jhipster.Client
             builder.Services
                 .AddBlazorise(options =>
                 {
-                    options.ChangeTextOnKeyPress = true;
+                    options.Immediate = true;
                 })
                 .AddBootstrapProviders()
                 .AddFontAwesomeIcons();
 
 
-            builder.RootComponents.Add<App>("app");
+            builder.RootComponents.Add<App>("#app");
+            builder.RootComponents.Add<HeadOutlet>("head::after");
 
-            builder.Services.AddSingleton<ISessionStorageService, SessionStorageService>().AddSingleton<ISyncSessionStorageService, SessionStorageService>();
+            builder.Services.AddBlazoredSessionStorage(config =>
+            {
+                config.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
+                config.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+                config.JsonSerializerOptions.IgnoreReadOnlyProperties = true;
+                config.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+                config.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+                config.JsonSerializerOptions.ReadCommentHandling = JsonCommentHandling.Skip;
+                config.JsonSerializerOptions.WriteIndented = false;
+            });
+
             builder.Services.AddBlazoredModal();
 
             builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-            builder.Services.AddSingleton<AuthenticationStateProvider, AuthenticationService>();
+            builder.Services.AddScoped<AuthenticationStateProvider, AuthenticationService>();
             builder.Services.AddSingleton<INavigationService, NavigationService>();
 
-            builder.Services.AddSingleton<IUserService, UserService>();
-            builder.Services.AddSingleton<IRegisterService, RegisterService>();
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IRegisterService, RegisterService>();
 
-            builder.Services.AddSingleton<IRegionService, RegionService>();
-            builder.Services.AddSingleton<ICountryService, CountryService>();
-            builder.Services.AddSingleton<ILocationService, LocationService>();
-            builder.Services.AddSingleton<IDepartmentService, DepartmentService>();
-            builder.Services.AddSingleton<IPieceOfWorkService, PieceOfWorkService>();
-            builder.Services.AddSingleton<IEmployeeService, EmployeeService>();
-            builder.Services.AddSingleton<IJobService, JobService>();
-            builder.Services.AddSingleton<IJobHistoryService, JobHistoryService>();
+            builder.Services.AddScoped<IRegionService, RegionService>();
+            builder.Services.AddScoped<ICountryService, CountryService>();
+            builder.Services.AddScoped<ILocationService, LocationService>();
+            builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+            builder.Services.AddScoped<IPieceOfWorkService, PieceOfWorkService>();
+            builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+            builder.Services.AddScoped<IJobService, JobService>();
+            builder.Services.AddScoped<IJobHistoryService, JobHistoryService>();
             // jhipster-needle-add-services-in-di - JHipster will add services in DI
 
             builder.Services.AddHttpClientInterceptor();
@@ -75,10 +89,6 @@ namespace Jhipster.Client
             builder.Services.AddAuthorizationCore();
 
             var host = builder.Build();
-
-            host.Services
-                .UseBootstrapProviders()
-                .UseFontAwesomeIcons();
 
             await host.RunAsync();
         }

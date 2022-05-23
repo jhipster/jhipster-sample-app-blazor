@@ -11,12 +11,12 @@ namespace Jhipster.Client.Shared
 
         private async Task Delete()
         {
-            await BlazoredModal.Close();
+            await BlazoredModal.CloseAsync();
         }
 
         private async Task Close()
         {
-            await BlazoredModal.Cancel();
+            await BlazoredModal.CancelAsync();
         }
     }
 }

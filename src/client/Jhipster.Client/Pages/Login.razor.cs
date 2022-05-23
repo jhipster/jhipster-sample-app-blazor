@@ -27,7 +27,7 @@ namespace Jhipster.Client.Pages
             LoginModel = new LoginModel();
             if (result)
             {
-                await BlazoredModal.Close();
+                await BlazoredModal.CloseAsync();
             }
         }
     }

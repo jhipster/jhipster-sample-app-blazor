@@ -9,6 +9,7 @@ using JHipsterNet.Web.Logging;
 using Serilog.Sinks.Syslog;
 using ILogger = Serilog.ILogger;
 using static JHipsterNet.Core.Boot.BannerPrinter;
+using Microsoft.Extensions.Hosting;
 
 namespace Jhipster
 {
@@ -29,7 +30,7 @@ namespace Jhipster
                 var appConfiguration = GetAppConfiguration();
                 Log.Logger = CreateLogger(appConfiguration);
 
-                CreateWebHostBuilder(args)
+                CreateHostBuilder(args)
                     .Build()
                     .Run();
 
@@ -47,12 +48,13 @@ namespace Jhipster
             }
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(params string[] args)
-        {
-            return WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .UseSerilog();
-        }
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+            })
+            .UseSerilog();
 
         /// <summary>
         /// Create application logger from configuration.

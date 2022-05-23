@@ -8,12 +8,13 @@ using AutoMapper;
 using Jhipster.Client.Models;
 using Jhipster.Dto;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.Extensions.Configuration;
 
 namespace Jhipster.Client.Services.EntityServices.User
 {
-    public class UserService : AbstractEntityService<UserModel, UserDto>, IUserService
+    public class UserService : AbstractEntityService<UserModel, UserDto, string>, IUserService
     {
-        public UserService(HttpClient httpClient, AuthenticationStateProvider authenticationStateProvider, IMapper mapper) : base(httpClient, authenticationStateProvider, mapper, "/api/users")
+        public UserService(HttpClient httpClient, AuthenticationStateProvider authenticationStateProvider, IMapper mapper, IConfiguration configuration) : base(httpClient, authenticationStateProvider, mapper, configuration, "/api/admin/users")
         {
         }
 

@@ -31,7 +31,7 @@ namespace Jhipster.Client.Test.Pages.Entities.Employee
             Services.AddSingleton<INavigationService>(_navigationService.Object);
             Services.AddBlazorise(options =>
                 {
-                    options.ChangeTextOnKeyPress = true;
+                    options.Immediate = true;
                 })
                 .AddBootstrapProviders()
                 .AddFontAwesomeIcons();

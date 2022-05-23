@@ -7,23 +7,16 @@ using Jhipster.Crosscutting.Enums;
 namespace Jhipster.Domain
 {
     [Table("job_history")]
-    public class JobHistory
+    public class JobHistory : BaseEntity<long>
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long Id { get; set; }
-
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public Language Language { get; set; }
         public long? JobId { get; set; }
-
         public Job Job { get; set; }
         public long? DepartmentId { get; set; }
-
         public Department Department { get; set; }
         public long? EmployeeId { get; set; }
-
         public Employee Employee { get; set; }
 
         // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

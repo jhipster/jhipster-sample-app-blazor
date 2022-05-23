@@ -1,35 +1,64 @@
 {
   "generator-jhipster": {
-    "namespace": "Jhipster",
     "applicationType": "monolith",
-    "databaseType": "sqllite",
     "authenticationType": "jwt",
-    "serverPort": "5000",
-    "prodDatabaseType": "mysql",
-    "jhipsterVersion": "6.10.5",
     "baseName": "Jhipster",
-    "useSass": true,
-    "clientPackageManager": "npm",
-    "clientFramework": "Blazor",
-    "clientTheme": "none",
-    "clientThemeVariant": "",
-    "creationTimestamp": 1606076717267,
-    "testFrameworks": [],
-    "jhiPrefix": "jhi",
-    "entitySuffix": "",
-    "dtoSuffix": "DTO",
-    "otherModules": [
-      {
-        "name": "generator-jhipster-dotnetcore",
-        "version": "2.1.0"
-      }
-    ],
-    "enableTranslation": false,
     "blueprints": [
       {
         "name": "generator-jhipster-dotnetcore",
-        "version": "2.1.0"
+        "version": "3.6.0"
       }
-    ]
+    ],
+    "buildTool": "maven",
+    "cacheProvider": "ehcache",
+    "clientFramework": "Blazor",
+    "clientPackageManager": "npm",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "creationTimestamp": 1606076717267,
+    "databaseType": "sqllite",
+    "devDatabaseType": "h2Disk",
+    "devServerPort": 9060,
+    "dtoSuffix": "DTO",
+    "enableGradleEnterprise": false,
+    "enableHibernateCache": true,
+    "enableTranslation": false,
+    "entities": [
+      "Region",
+      "Country",
+      "Location",
+      "Department",
+      "PieceOfWork",
+      "Employee",
+      "Job",
+      "JobHistory"
+    ],
+    "entitySuffix": "",
+    "jhiPrefix": "jhi",
+    "jhipsterVersion": "7.8.1",
+    "languages": ["en", "fr"],
+    "lastLiquibaseTimestamp": 1653309195000,
+    "namespace": "Jhipster",
+    "nativeLanguage": "en",
+    "otherModules": [
+      {
+        "name": "generator-jhipster-dotnetcore",
+        "version": "3.6.0"
+      }
+    ],
+    "packageName": "com.mycompany.myapp",
+    "pages": [],
+    "prodDatabaseType": "mysql",
+    "reactive": false,
+    "searchEngine": false,
+    "serverPort": "5000",
+    "serviceDiscoveryType": false,
+    "skipCheckLengthOfIdentifier": false,
+    "skipFakeData": false,
+    "skipUserManagement": false,
+    "testFrameworks": [],
+    "useSass": true,
+    "websocket": false,
+    "withAdminUi": true
   }
 }

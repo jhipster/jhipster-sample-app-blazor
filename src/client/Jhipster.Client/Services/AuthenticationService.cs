@@ -10,6 +10,7 @@ using Blazored.SessionStorage;
 using Jhipster.Client.Models;
 using Jhipster.Dto;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.Extensions.Configuration;
 
 namespace Jhipster.Client.Services
 {
@@ -23,22 +24,24 @@ namespace Jhipster.Client.Services
         private readonly HttpClient _httpClient;
         private readonly ISyncSessionStorageService _sessionStorage;
         private readonly IMapper _mapper;
+        private readonly ConfigurationModel _configurationModel = new ConfigurationModel();
 
         public bool IsAuthenticated { get; set; }
         public UserModel CurrentUser { get; set; }
         public JwtToken JwtToken { get; set; }
 
-        public AuthenticationService(HttpClient httpClient, ISyncSessionStorageService sessionStorage, IMapper mapper)
+        public AuthenticationService(HttpClient httpClient, ISyncSessionStorageService sessionStorage, IMapper mapper, IConfiguration configuration)
         {
             _httpClient = httpClient;
             _sessionStorage = sessionStorage;
             _mapper = mapper;
-            _httpClient.BaseAddress = new Uri(Configuration.BaseUri);
+            configuration.Bind(_configurationModel);
+            _httpClient.BaseAddress = new Uri(_configurationModel.ServerUrl);
             var token = _sessionStorage.GetItem<string>(JhiAuthenticationtoken);
             if (!string.IsNullOrEmpty(token))
             {
                 JwtToken = new JwtToken { IdToken = token };
-                SetUserAndAuthorizationHeader(JwtToken);
+                _ = SetUserAndAuthorizationHeader(JwtToken);
             }
         }
 
@@ -55,7 +58,7 @@ namespace Jhipster.Client.Services
             return IsAuthenticated;
         }
 
-        public async Task SignOut()
+        public Task SignOut()
         {
             _httpClient.DefaultRequestHeaders.Remove(AuthorizationHeader);
             JwtToken = null;
@@ -63,6 +66,7 @@ namespace Jhipster.Client.Services
             CurrentUser = null;
             _sessionStorage.RemoveItem(JhiAuthenticationtoken);
             NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
+            return Task.CompletedTask;
         }
 
         private async Task SetUserAndAuthorizationHeader(JwtToken jwtToken)

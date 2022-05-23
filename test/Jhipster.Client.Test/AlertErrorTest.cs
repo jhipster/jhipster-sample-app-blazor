@@ -15,11 +15,24 @@ using Jhipster.Client.Shared.Constants;
 using Jhipster.Client.Shared.Models;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
 using Xunit;
+using Blazorise;
+using Blazorise.Bootstrap;
+using Blazorise.Icons.FontAwesome;
 
 namespace Jhipster.Client.Test
 {
     public class AlertErrorTest : TestContext
     {
+        public AlertErrorTest()
+        {
+            Services.AddBlazorise(options =>
+            {
+                options.Immediate = true;
+            })
+                .AddBootstrapProviders()
+                .AddFontAwesomeIcons();
+
+        }
         [Fact]
         public async Task Should_Display404_When_404()
         {
@@ -136,7 +149,7 @@ namespace Jhipster.Client.Test
             httpClient.Timeout = TimeSpan.FromMilliseconds(60);
             try
             {
-                await httpClient.GetAsync(Configuration.BaseUri);
+                await httpClient.GetAsync("https://localhost:5000");
             }
             catch (Exception)
             {

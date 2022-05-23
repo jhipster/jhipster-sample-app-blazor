@@ -34,7 +34,7 @@ namespace Jhipster.Client.Test.Pages.Entities.Country
             Services.AddSingleton<IModalService>(_modalService.Object);
             Services.AddBlazorise(options =>
                 {
-                    options.ChangeTextOnKeyPress = true;
+                    options.Immediate = true;
                 })
                 .AddBootstrapProviders()
                 .AddFontAwesomeIcons();

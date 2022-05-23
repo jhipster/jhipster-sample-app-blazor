@@ -52,7 +52,7 @@ namespace Jhipster.Client.Test.Pages.Entities.JobHistory
             Services.AddSingleton<IModalService>(_modalService.Object);
             Services.AddBlazorise(options =>
                 {
-                    options.ChangeTextOnKeyPress = true;
+                    options.Immediate = true;
                 })
                 .AddBootstrapProviders()
                 .AddFontAwesomeIcons();
@@ -61,6 +61,10 @@ namespace Jhipster.Client.Test.Pages.Entities.JobHistory
             _fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
                 .ForEach(b => _fixture.Behaviors.Remove(b));
             _fixture.Behaviors.Add(new OmitOnRecursionBehavior(1));
+
+            string BlazoriseVersion = "1.0.4.0";
+            var moduleInterop = JSInterop.SetupModule("./_content/Blazorise/select.js?v=" + BlazoriseVersion);
+            moduleInterop.Mode = JSRuntimeMode.Loose;
         }
 
         [Fact]

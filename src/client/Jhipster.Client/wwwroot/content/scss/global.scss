@@ -1,6 +1,6 @@
-@import 'bootstrap-variables';
-@import '../../lib/bootstrap/scss/functions';
-@import '../../lib/bootstrap/scss/variables';
+@import "bootstrap-variables";
+@import "../../lib/bootstrap/scss/functions";
+@import "../../lib/bootstrap/scss/variables";
 
 /* ==============================================================
 Bootstrap tweaks
@@ -210,7 +210,7 @@ Main page styles
   display: inline-block;
   width: 347px;
   height: 497px;
-  background: url('../images/jhipster_family_member_3.svg') no-repeat center top;
+  background: url("../images/jhipster_family_member_3.svg") no-repeat center top;
   background-size: contain;
 }
 
@@ -221,7 +221,8 @@ Main page styles
   only screen and (min-resolution: 192dpi),
   only screen and (min-resolution: 2dppx) {
   .hipster {
-    background: url('../images/jhipster_family_member_3.svg') no-repeat center top;
+    background: url("../images/jhipster_family_member_3.svg") no-repeat center
+      top;
     background-size: contain;
   }
 }
@@ -262,6 +263,6 @@ Logo styles
   width: 45px;
   display: inline-block;
   vertical-align: middle;
-  background: url('../images/logo-jhipster.png') no-repeat center center;
+  background: url("../images/logo-jhipster.png") no-repeat center center;
   background-size: contain;
 }

@@ -34,7 +34,7 @@ namespace Jhipster.Client.Test.Pages.Admin.UserManagement
             _navidationService = new Mock<INavigationService>();
             Services.AddBlazorise(options =>
                 {
-                    options.ChangeTextOnKeyPress = true;
+                    options.Immediate = true;
                 })
                 .AddBootstrapProviders()
                 .AddFontAwesomeIcons();

@@ -3,9 +3,8 @@ using System.Collections.Generic;
 
 namespace Jhipster.Client.Models
 {
-    public class UserModel
+    public class UserModel : BaseModel<string>
     {
-        public string Id { get; set; }
         public string Login { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

@@ -1,4 +1,6 @@
+using System;
 using System.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using JHipsterNet.Core.Pagination;
@@ -9,7 +11,7 @@ using Jhipster.Infrastructure.Data.Extensions;
 
 namespace Jhipster.Infrastructure.Data.Repositories
 {
-    public class DepartmentRepository : GenericRepository<Department>, IDepartmentRepository
+    public class DepartmentRepository : GenericRepository<Department, long>, IDepartmentRepository
     {
         public DepartmentRepository(IUnitOfWork context) : base(context)
         {
@@ -17,17 +19,8 @@ namespace Jhipster.Infrastructure.Data.Repositories
 
         public override async Task<Department> CreateOrUpdateAsync(Department department)
         {
-            bool exists = await Exists(x => x.Id == department.Id);
-
-            if (department.Id != 0 && exists)
-            {
-                Update(department);
-            }
-            else
-            {
-                _context.AddOrUpdateGraph(department);
-            }
-            return department;
+            List<Type> entitiesToBeUpdated = new List<Type>();
+            return await base.CreateOrUpdateAsync(department, entitiesToBeUpdated);
         }
     }
 }

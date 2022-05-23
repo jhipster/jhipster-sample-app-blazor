@@ -47,12 +47,12 @@ namespace Jhipster.Client.Test.Helpers
             set => throw new NotImplementedException();
         }
 
-        public virtual async Task<bool> SignIn(LoginModel loginModel)
+        public virtual Task<bool> SignIn(LoginModel loginModel)
         {
             throw new NotImplementedException();
         }
 
-        public virtual async Task SignOut()
+        public virtual Task SignOut()
         {
             throw new NotImplementedException();
         }

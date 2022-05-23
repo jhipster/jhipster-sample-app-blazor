@@ -6,12 +6,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Jhipster.Domain
 {
     [Table("region")]
-    public class Region
+    public class Region : BaseEntity<long>
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long Id { get; set; }
-
         public string RegionName { get; set; }
 
         // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

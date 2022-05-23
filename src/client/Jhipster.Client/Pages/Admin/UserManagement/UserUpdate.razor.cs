@@ -54,6 +54,7 @@ namespace Jhipster.Client.Pages.Admin.UserManagement
         private void OnSelectAuthoritiesChanged(IReadOnlyList<string> selectedAuthorities)
         {
             SelectedAuthorities = selectedAuthorities;
+            CurrentAuthorities = new ReadOnlyCollection<string>(SelectedAuthorities.ToList());
         }
 
         private async Task Save()

@@ -1,6 +1,6 @@
 namespace Jhipster.Domain.Repositories.Interfaces
 {
-    public interface ILocationRepository : IGenericRepository<Location>
+    public interface ILocationRepository : IGenericRepository<Location, long>
     {
     }
 }

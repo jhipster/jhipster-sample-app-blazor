@@ -5,8 +5,9 @@ using Jhipster.Client.Models;
 using Jhipster.Client.Pages.Utils;
 using Jhipster.Client.Services.EntityServices.Employee;
 using Jhipster.Client.Services.EntityServices.Job;
-using Jhipster.Client.Services.EntityServices.Employee;
+
 using Jhipster.Client.Services.EntityServices.Department;
+
 using Microsoft.AspNetCore.Components;
 
 namespace Jhipster.Client.Pages.Entities.Employee

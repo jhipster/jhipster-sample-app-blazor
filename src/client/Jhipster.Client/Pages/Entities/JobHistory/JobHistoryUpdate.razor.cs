@@ -5,8 +5,11 @@ using Jhipster.Client.Models;
 using Jhipster.Client.Pages.Utils;
 using Jhipster.Client.Services.EntityServices.JobHistory;
 using Jhipster.Client.Services.EntityServices.Job;
+
 using Jhipster.Client.Services.EntityServices.Department;
+
 using Jhipster.Client.Services.EntityServices.Employee;
+
 using Microsoft.AspNetCore.Components;
 
 namespace Jhipster.Client.Pages.Entities.JobHistory

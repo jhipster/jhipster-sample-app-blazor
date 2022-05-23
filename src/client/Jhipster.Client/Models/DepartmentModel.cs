@@ -4,9 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Jhipster.Client.Models
 {
-    public class DepartmentModel
+    public class DepartmentModel : BaseModel<long>
     {
-        public long Id { get; set; }
         [Required]
         public string DepartmentName { get; set; }
         public long? LocationId { get; set; }

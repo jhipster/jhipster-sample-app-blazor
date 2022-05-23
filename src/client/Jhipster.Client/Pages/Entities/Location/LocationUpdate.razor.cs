@@ -5,6 +5,7 @@ using Jhipster.Client.Models;
 using Jhipster.Client.Pages.Utils;
 using Jhipster.Client.Services.EntityServices.Location;
 using Jhipster.Client.Services.EntityServices.Country;
+
 using Microsoft.AspNetCore.Components;
 
 namespace Jhipster.Client.Pages.Entities.Location

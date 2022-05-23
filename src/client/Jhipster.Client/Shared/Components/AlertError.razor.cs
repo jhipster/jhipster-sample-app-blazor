@@ -94,7 +94,7 @@ namespace Jhipster.Client.Shared.Components
                 Timeout = 3000,
                 Scoped = true,
             };
-            AddAlert(alert);
+            _ = AddAlert(alert);
         }
 
         private void RemoveAfter(JhiAlert alert, double timeout)
@@ -107,7 +107,7 @@ namespace Jhipster.Client.Shared.Components
                     senderTimer.Stop();
                 }
 
-                RemoveAlert(alert);
+                _ = RemoveAlert(alert);
             };
             timer.Start();
         }

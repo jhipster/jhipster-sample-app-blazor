@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Jhipster.Dto;
 using Jhipster.Client.Models;
+using Microsoft.Extensions.Configuration;
 
 namespace Jhipster.Client.Services.AccountServices
 {
@@ -16,12 +17,14 @@ namespace Jhipster.Client.Services.AccountServices
 
         private readonly HttpClient _httpClient;
         private readonly IMapper _mapper;
+        private readonly ConfigurationModel _configurationModel = new ConfigurationModel();
 
-        public RegisterService(HttpClient httpClient, IMapper mapper)
+        public RegisterService(HttpClient httpClient, IMapper mapper, IConfiguration configuration)
         {
             _httpClient = httpClient;
             _mapper = mapper;
-            _httpClient.BaseAddress = new Uri(Configuration.BaseUri);
+            configuration.Bind(_configurationModel);
+            _httpClient.BaseAddress = new Uri(_configurationModel.ServerUrl);
         }
 
         public async Task<HttpResponseMessage> Save(UserSaveModel registerModel)

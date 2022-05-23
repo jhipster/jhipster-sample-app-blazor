@@ -18,9 +18,10 @@ namespace Jhipster.Client.Shared
         [CascadingParameter]
         private IModalService ModalService { get; set; }
 
-        private async Task SignIn()
+        private Task SignIn()
         {
             ModalService.Show<Login>("Sign In");
+            return Task.CompletedTask;
         }
 
         private async Task SignOut()

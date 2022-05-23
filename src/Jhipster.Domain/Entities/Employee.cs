@@ -6,12 +6,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Jhipster.Domain
 {
     [Table("employee")]
-    public class Employee
+    public class Employee : BaseEntity<long>
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long Id { get; set; }
-
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
