@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Jhipster.Infrastructure.Data;
-using Jhipster.Domain;
+using Jhipster.Domain.Entities;
 using Jhipster.Domain.Repositories.Interfaces;
 using Jhipster.Dto;
 using Jhipster.Configuration.AutoMapper;

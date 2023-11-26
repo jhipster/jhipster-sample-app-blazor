@@ -1,5 +1,5 @@
 @page "/department/new"
-@page "/department/{Id:int}/edit"
+@page "/department/{Id:long}/edit"
 @using Microsoft.AspNetCore.Authorization
 @namespace Jhipster.Client.Pages.Entities.Department
 
@@ -14,6 +14,7 @@
                     TODO ADD ERROR
                     <jhi-alert-error></jhi-alert-error>
                 *@
+
 
                 @if (Id != 0)
                 {
@@ -35,7 +36,7 @@
                         <option value="0"></option>
                         @foreach (var location in LocationIds)
                         {
-                            if (Id != 0 && location == DepartmentModel?.LocationId)
+                            if (Id  != 0&& location == DepartmentModel?.LocationId)
                             {
                                 <option selected="selected">@location</option>
                             }

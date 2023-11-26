@@ -1,5 +1,5 @@
 @page "/region/new"
-@page "/region/{Id:int}/edit"
+@page "/region/{Id:long}/edit"
 @using Microsoft.AspNetCore.Authorization
 @namespace Jhipster.Client.Pages.Entities.Region
 
@@ -14,6 +14,7 @@
                     TODO ADD ERROR
                     <jhi-alert-error></jhi-alert-error>
                 *@
+
 
                 @if (Id != 0)
                 {

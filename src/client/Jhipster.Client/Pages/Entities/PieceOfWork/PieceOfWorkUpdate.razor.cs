@@ -13,7 +13,7 @@ namespace Jhipster.Client.Pages.Entities.PieceOfWork
     public partial class PieceOfWorkUpdate : ComponentBase
     {
         [Parameter]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Inject]
         private IPieceOfWorkService PieceOfWorkService { get; set; }
@@ -25,6 +25,7 @@ namespace Jhipster.Client.Pages.Entities.PieceOfWork
 
         protected override async Task OnInitializedAsync()
         {
+
             if (Id != 0)
             {
                 PieceOfWorkModel = await PieceOfWorkService.Get(Id.ToString());
@@ -38,6 +39,7 @@ namespace Jhipster.Client.Pages.Entities.PieceOfWork
 
         private async Task Save()
         {
+
             if (Id != 0)
             {
                 await PieceOfWorkService.Update(PieceOfWorkModel);

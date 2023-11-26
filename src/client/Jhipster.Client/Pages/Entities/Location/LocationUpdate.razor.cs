@@ -13,7 +13,7 @@ namespace Jhipster.Client.Pages.Entities.Location
     public partial class LocationUpdate : ComponentBase
     {
         [Parameter]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Inject]
         private ILocationService LocationService { get; set; }
@@ -36,6 +36,7 @@ namespace Jhipster.Client.Pages.Entities.Location
         {
             Countries = await CountryService.GetAll();
             CountryIds = Countries.Select(country => country.Id).ToList();
+
             if (Id != 0)
             {
                 LocationModel = await LocationService.Get(Id.ToString());
@@ -51,6 +52,7 @@ namespace Jhipster.Client.Pages.Entities.Location
         private async Task Save()
         {
             LocationModel.CountryId = Countries?.SingleOrDefault(country => country.Id.Equals(CountryId))?.Id;
+
             if (Id != 0)
             {
                 await LocationService.Update(LocationModel);

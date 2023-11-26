@@ -2,10 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Jhipster.Client.Models
+namespace Jhipster.Client.Models;
+
+public class RegionModel : BaseModel<long>
 {
-    public class RegionModel : BaseModel<long>
-    {
-        public string RegionName { get; set; }
-    }
+    public string RegionName { get; set; }
 }

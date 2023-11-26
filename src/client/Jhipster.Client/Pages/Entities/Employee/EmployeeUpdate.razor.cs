@@ -15,7 +15,7 @@ namespace Jhipster.Client.Pages.Entities.Employee
     public partial class EmployeeUpdate : ComponentBase
     {
         [Parameter]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Inject]
         private IEmployeeService EmployeeService { get; set; }
@@ -46,6 +46,7 @@ namespace Jhipster.Client.Pages.Entities.Employee
             EmployeeIds = Managers.Select(employee => employee.Id).ToList();
             Departments = await DepartmentService.GetAll();
             DepartmentIds = Departments.Select(department => department.Id).ToList();
+
             if (Id != 0)
             {
                 EmployeeModel = await EmployeeService.Get(Id.ToString());
@@ -63,6 +64,7 @@ namespace Jhipster.Client.Pages.Entities.Employee
         {
             EmployeeModel.ManagerId = Managers?.SingleOrDefault(employee => employee.Id.Equals(EmployeeId))?.Id;
             EmployeeModel.DepartmentId = Departments?.SingleOrDefault(department => department.Id.Equals(DepartmentId))?.Id;
+
             if (Id != 0)
             {
                 await EmployeeService.Update(EmployeeModel);

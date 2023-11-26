@@ -1,4 +1,4 @@
-@page "/region/{Id:int}/view"
+@page "/region/{Id:long}/view"
 @using Microsoft.AspNetCore.Authorization
 @namespace Jhipster.Client.Pages.Entities.Region
 
@@ -6,6 +6,7 @@
 
 <div class="row justify-content-center">
     <div class="col-8">
+
         @if (Region != null && Region.Id != 0)
         {
             <div>

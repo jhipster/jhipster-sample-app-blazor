@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Jhipster.Client.Models
+namespace Jhipster.Client.Models;
+
+public class UserSaveModel : UserModel
 {
-    public class UserSaveModel : UserModel
-    {
-        public string Password { get; set; }
-    }
+    public string Password { get; set; }
 }

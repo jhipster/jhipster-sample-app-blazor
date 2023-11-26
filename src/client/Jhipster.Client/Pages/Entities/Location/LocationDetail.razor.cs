@@ -9,7 +9,7 @@ namespace Jhipster.Client.Pages.Entities.Location
     public partial class LocationDetail : ComponentBase
     {
         [Parameter]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Inject]
         public ILocationService LocationService { get; set; }
@@ -21,6 +21,7 @@ namespace Jhipster.Client.Pages.Entities.Location
 
         protected override async Task OnInitializedAsync()
         {
+
             if (Id != 0)
             {
                 Location = await LocationService.Get(Id.ToString());

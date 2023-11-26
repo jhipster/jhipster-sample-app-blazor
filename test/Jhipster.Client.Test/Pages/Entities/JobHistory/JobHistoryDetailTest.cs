@@ -11,65 +11,68 @@ using Jhipster.Client.Models;
 using Jhipster.Client.Pages.Entities.JobHistory;
 using Jhipster.Client.Pages.Utils;
 using Jhipster.Client.Services.EntityServices.JobHistory;
+using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Moq;
 using Xunit;
 
-namespace Jhipster.Client.Test.Pages.Entities.JobHistory
+namespace Jhipster.Client.Test.Pages.Entities.JobHistory;
+
+public class JobHistoryDetailTest : TestContext
 {
-    public class JobHistoryDetailTest : TestContext
+    private readonly Mock<IJobHistoryService> _jobhistoryService;
+    private readonly Mock<INavigationService> _navigationService;
+    private readonly AutoFixture.Fixture _fixture = new AutoFixture.Fixture();
+
+    public JobHistoryDetailTest()
     {
-        private readonly Mock<IJobHistoryService> _jobhistoryService;
-        private readonly Mock<INavigationService> _navigationService;
-        private readonly AutoFixture.Fixture _fixture = new AutoFixture.Fixture();
+        _jobhistoryService = new Mock<IJobHistoryService>();
+        _navigationService = new Mock<INavigationService>();
+        Services.AddSingleton<IJobHistoryService>(_jobhistoryService.Object);
+        Services.AddSingleton<INavigationService>(_navigationService.Object);
+        Services.AddBlazorise(options =>
+            {
+                options.Immediate = true;
+            })
+            .Replace(ServiceDescriptor.Transient<IComponentActivator, ComponentActivator>())
+            .AddBootstrapProviders()
+            .AddFontAwesomeIcons();
+        //This code is needed to support recursion
+        _fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
+            .ForEach(b => _fixture.Behaviors.Remove(b));
+        _fixture.Behaviors.Add(new OmitOnRecursionBehavior(1));
+        JSInterop.Mode = JSRuntimeMode.Loose;
+    }
 
-        public JobHistoryDetailTest()
-        {
-            _jobhistoryService = new Mock<IJobHistoryService>();
-            _navigationService = new Mock<INavigationService>();
-            Services.AddSingleton<IJobHistoryService>(_jobhistoryService.Object);
-            Services.AddSingleton<INavigationService>(_navigationService.Object);
-            Services.AddBlazorise(options =>
-                {
-                    options.Immediate = true;
-                })
-                .AddBootstrapProviders()
-                .AddFontAwesomeIcons();
-            //This code is needed to support recursion
-            _fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                .ForEach(b => _fixture.Behaviors.Remove(b));
-            _fixture.Behaviors.Add(new OmitOnRecursionBehavior(1));
-        }
+    [Fact]
+    public void Should_DisplayJobHistory_When_IdIsPresent()
+    {
+        //Arrange
+        var jobhistory = _fixture.Create<JobHistoryModel>();
+        _jobhistoryService.Setup(service => service.Get(It.IsAny<string>())).Returns(Task.FromResult(jobhistory));
+        var jobhistoryDetail = RenderComponent<JobHistoryDetail>(ComponentParameter.CreateParameter("Id", 1L));
 
-        [Fact]
-        public void Should_DisplayJobHistory_When_IdIsPresent()
-        {
-            //Arrange
-            var jobhistory = _fixture.Create<JobHistoryModel>();
-            _jobhistoryService.Setup(service => service.Get(It.IsAny<string>())).Returns(Task.FromResult(jobhistory));
-            var jobhistoryDetail = RenderComponent<JobHistoryDetail>(ComponentParameter.CreateParameter("Id", 1));
+        // Act
+        var title = jobhistoryDetail.Find("h2");
 
-            // Act
-            var title = jobhistoryDetail.Find("h2");
+        // Assert
+        title.MarkupMatches($"<h2><span>JobHistory</span>{jobhistory.Id}</h2>");
 
-            // Assert
-            title.MarkupMatches($"<h2><span>JobHistory</span>{jobhistory.Id}</h2>");
+    }
 
-        }
+    [Fact]
+    public void Should_NotDisplayJobHistory_When_IdIsNotPresent()
+    {
+        //Arrange
+        _jobhistoryService.Setup(service => service.Get(It.IsAny<string>())).Returns(Task.FromResult(new JobHistoryModel()));
+        var jobhistoryDetail = RenderComponent<JobHistoryDetail>();
 
-        [Fact]
-        public void Should_NotDisplayJobHistory_When_IdIsNotPresent()
-        {
-            //Arrange
-            _jobhistoryService.Setup(service => service.Get(It.IsAny<string>())).Returns(Task.FromResult(new JobHistoryModel()));
-            var jobhistoryDetail = RenderComponent<JobHistoryDetail>();
+        // Act
+        var title = jobhistoryDetail.Find("div.col-8");
 
-            // Act
-            var title = jobhistoryDetail.Find("div.col-8");
+        // Assert
+        title.Children.Length.Should().Be(0);
 
-            // Assert
-            title.Children.Length.Should().Be(0);
-
-        }
     }
 }

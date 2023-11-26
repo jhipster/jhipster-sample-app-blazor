@@ -9,7 +9,7 @@ namespace Jhipster.Client.Pages.Entities.Region
     public partial class RegionDetail : ComponentBase
     {
         [Parameter]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Inject]
         public IRegionService RegionService { get; set; }
@@ -21,6 +21,7 @@ namespace Jhipster.Client.Pages.Entities.Region
 
         protected override async Task OnInitializedAsync()
         {
+
             if (Id != 0)
             {
                 Region = await RegionService.Get(Id.ToString());

@@ -1,4 +1,4 @@
-@page "/employee/{Id:int}/view"
+@page "/employee/{Id:long}/view"
 @using Microsoft.AspNetCore.Authorization
 @namespace Jhipster.Client.Pages.Entities.Employee
 
@@ -6,6 +6,7 @@
 
 <div class="row justify-content-center">
     <div class="col-8">
+
         @if (Employee != null && Employee.Id != 0)
         {
             <div>
@@ -46,6 +47,7 @@
                     </dd>
                     <dt><span>Manager</span></dt>
                     <dd>
+
                         @if (Employee.ManagerId != 0)
                         {
                             <div>
@@ -55,6 +57,7 @@
                     </dd>
                     <dt><span>Department</span></dt>
                     <dd>
+
                         @if (Employee.DepartmentId != 0)
                         {
                             <div>

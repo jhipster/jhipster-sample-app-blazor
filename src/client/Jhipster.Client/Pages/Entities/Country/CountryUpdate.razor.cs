@@ -13,7 +13,7 @@ namespace Jhipster.Client.Pages.Entities.Country
     public partial class CountryUpdate : ComponentBase
     {
         [Parameter]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Inject]
         private ICountryService CountryService { get; set; }
@@ -36,6 +36,7 @@ namespace Jhipster.Client.Pages.Entities.Country
         {
             Regions = await RegionService.GetAll();
             RegionIds = Regions.Select(region => region.Id).ToList();
+
             if (Id != 0)
             {
                 CountryModel = await CountryService.Get(Id.ToString());
@@ -51,6 +52,7 @@ namespace Jhipster.Client.Pages.Entities.Country
         private async Task Save()
         {
             CountryModel.RegionId = Regions?.SingleOrDefault(region => region.Id.Equals(RegionId))?.Id;
+
             if (Id != 0)
             {
                 await CountryService.Update(CountryModel);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Jhipster.Domain
+namespace Jhipster.Domain.Entities
 {
     [Table("department")]
     public class Department : BaseEntity<long>

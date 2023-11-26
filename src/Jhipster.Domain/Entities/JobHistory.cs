@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Jhipster.Crosscutting.Enums;
 
-namespace Jhipster.Domain
+namespace Jhipster.Domain.Entities
 {
     [Table("job_history")]
     public class JobHistory : BaseEntity<long>

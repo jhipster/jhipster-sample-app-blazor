@@ -17,7 +17,7 @@ namespace Jhipster.Client.Pages.Entities.JobHistory
     public partial class JobHistoryUpdate : ComponentBase
     {
         [Parameter]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Inject]
         private IJobHistoryService JobHistoryService { get; set; }
@@ -62,6 +62,7 @@ namespace Jhipster.Client.Pages.Entities.JobHistory
             DepartmentIds = Departments.Select(department => department.Id).ToList();
             Employees = await EmployeeService.GetAll();
             EmployeeIds = Employees.Select(employee => employee.Id).ToList();
+
             if (Id != 0)
             {
                 JobHistoryModel = await JobHistoryService.Get(Id.ToString());
@@ -81,6 +82,7 @@ namespace Jhipster.Client.Pages.Entities.JobHistory
             JobHistoryModel.JobId = Jobs?.SingleOrDefault(job => job.Id.Equals(JobId))?.Id;
             JobHistoryModel.DepartmentId = Departments?.SingleOrDefault(department => department.Id.Equals(DepartmentId))?.Id;
             JobHistoryModel.EmployeeId = Employees?.SingleOrDefault(employee => employee.Id.Equals(EmployeeId))?.Id;
+
             if (Id != 0)
             {
                 await JobHistoryService.Update(JobHistoryModel);

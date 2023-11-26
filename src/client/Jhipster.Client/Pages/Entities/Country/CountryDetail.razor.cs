@@ -9,7 +9,7 @@ namespace Jhipster.Client.Pages.Entities.Country
     public partial class CountryDetail : ComponentBase
     {
         [Parameter]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Inject]
         public ICountryService CountryService { get; set; }
@@ -21,6 +21,7 @@ namespace Jhipster.Client.Pages.Entities.Country
 
         protected override async Task OnInitializedAsync()
         {
+
             if (Id != 0)
             {
                 Country = await CountryService.Get(Id.ToString());

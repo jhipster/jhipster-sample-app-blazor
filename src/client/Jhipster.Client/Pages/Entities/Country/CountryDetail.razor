@@ -1,4 +1,4 @@
-@page "/country/{Id:int}/view"
+@page "/country/{Id:long}/view"
 @using Microsoft.AspNetCore.Authorization
 @namespace Jhipster.Client.Pages.Entities.Country
 
@@ -6,6 +6,7 @@
 
 <div class="row justify-content-center">
     <div class="col-8">
+
         @if (Country != null && Country.Id != 0)
         {
             <div>
@@ -22,6 +23,7 @@
                     </dd>
                     <dt><span>Region</span></dt>
                     <dd>
+
                         @if (Country.RegionId != 0)
                         {
                             <div>

@@ -1,10 +1,9 @@
 using System.Text.Json.Serialization;
 
-namespace Jhipster.Client.Models
+namespace Jhipster.Client.Models;
+
+public class JwtToken
 {
-    public class JwtToken
-    {
-        [JsonPropertyName("id_token")]
-        public string IdToken { get; set; }
-    }
+    [JsonPropertyName("id_token")]
+    public string IdToken { get; set; }
 }

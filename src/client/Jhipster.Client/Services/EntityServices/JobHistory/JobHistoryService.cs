@@ -5,13 +5,12 @@ using Jhipster.Dto;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.Configuration;
 
-namespace Jhipster.Client.Services.EntityServices.JobHistory
+namespace Jhipster.Client.Services.EntityServices.JobHistory;
+
+public class JobHistoryService : AbstractEntityService<JobHistoryModel, JobHistoryDto, long>, IJobHistoryService
 {
-    public class JobHistoryService : AbstractEntityService<JobHistoryModel, JobHistoryDto, long>, IJobHistoryService
+    public JobHistoryService(HttpClient httpClient, AuthenticationStateProvider authenticationStateProvider, IMapper mapper, IConfiguration configuration)
+        : base(httpClient, authenticationStateProvider, mapper, configuration, "/api/job-histories")
     {
-        public JobHistoryService(HttpClient httpClient, AuthenticationStateProvider authenticationStateProvider, IMapper mapper, IConfiguration configuration)
-            : base(httpClient, authenticationStateProvider, mapper, configuration, "/api/job-histories")
-        {
-        }
     }
 }

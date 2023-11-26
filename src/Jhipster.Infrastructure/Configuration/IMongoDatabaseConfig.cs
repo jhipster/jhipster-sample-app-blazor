@@ -1,8 +1,7 @@
-namespace Jhipster.Infrastructure.Configuration
+namespace Jhipster.Infrastructure.Configuration;
+
+public interface IMongoDatabaseConfig
 {
-    public interface IMongoDatabaseConfig
-    {
-        string ConnectionString { get; set; }
-        string DatabaseName { get; set; }
-    }
+    string ConnectionString { get; set; }
+    string DatabaseName { get; set; }
 }

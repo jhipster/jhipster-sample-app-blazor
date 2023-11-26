@@ -9,7 +9,7 @@ namespace Jhipster.Client.Pages.Entities.Department
     public partial class DepartmentDetail : ComponentBase
     {
         [Parameter]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Inject]
         public IDepartmentService DepartmentService { get; set; }
@@ -21,6 +21,7 @@ namespace Jhipster.Client.Pages.Entities.Department
 
         protected override async Task OnInitializedAsync()
         {
+
             if (Id != 0)
             {
                 Department = await DepartmentService.Get(Id.ToString());

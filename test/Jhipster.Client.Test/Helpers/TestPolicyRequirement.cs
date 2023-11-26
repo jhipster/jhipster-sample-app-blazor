@@ -4,10 +4,9 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
 
-namespace Jhipster.Client.Test.Helpers
+namespace Jhipster.Client.Test.Helpers;
+
+public class TestPolicyRequirement : IAuthorizationRequirement
 {
-    public class TestPolicyRequirement : IAuthorizationRequirement
-    {
-        public string PolicyName { get; set; }
-    }
+    public string PolicyName { get; set; }
 }

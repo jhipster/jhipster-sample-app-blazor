@@ -1,5 +1,5 @@
 @page "/jobhistory/new"
-@page "/jobhistory/{Id:int}/edit"
+@page "/jobhistory/{Id:long}/edit"
 @using Microsoft.AspNetCore.Authorization
 @namespace Jhipster.Client.Pages.Entities.JobHistory
 
@@ -14,6 +14,7 @@
                     TODO ADD ERROR
                     <jhi-alert-error></jhi-alert-error>
                 *@
+
 
                 @if (Id != 0)
                 {
@@ -45,7 +46,7 @@
                         <option value="0"></option>
                         @foreach (var job in JobIds)
                         {
-                            if (Id != 0 && job == JobHistoryModel?.JobId)
+                            if (Id  != 0&& job == JobHistoryModel?.JobId)
                             {
                                 <option selected="selected">@job</option>
                             }
@@ -62,7 +63,7 @@
                         <option value="0"></option>
                         @foreach (var department in DepartmentIds)
                         {
-                            if (Id != 0 && department == JobHistoryModel?.DepartmentId)
+                            if (Id  != 0&& department == JobHistoryModel?.DepartmentId)
                             {
                                 <option selected="selected">@department</option>
                             }
@@ -79,7 +80,7 @@
                         <option value="0"></option>
                         @foreach (var employee in EmployeeIds)
                         {
-                            if (Id != 0 && employee == JobHistoryModel?.EmployeeId)
+                            if (Id  != 0&& employee == JobHistoryModel?.EmployeeId)
                             {
                                 <option selected="selected">@employee</option>
                             }

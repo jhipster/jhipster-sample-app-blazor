@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
 
-namespace Jhipster.Domain
+namespace Jhipster.Domain.Entities
 {
     [Table("piece_of_work")]
     public class PieceOfWork : BaseEntity<long>

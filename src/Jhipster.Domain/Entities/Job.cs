@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
 
-namespace Jhipster.Domain
+namespace Jhipster.Domain.Entities
 {
     [Table("job")]
     public class Job : BaseEntity<long>
@@ -13,7 +13,6 @@ namespace Jhipster.Domain
         public long? MinSalary { get; set; }
         public long? MaxSalary { get; set; }
         public IList<PieceOfWork> Chores { get; set; } = new List<PieceOfWork>();
-
         public long? EmployeeId { get; set; }
         public Employee Employee { get; set; }
 

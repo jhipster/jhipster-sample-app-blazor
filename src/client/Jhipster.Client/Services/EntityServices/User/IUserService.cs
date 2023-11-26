@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Jhipster.Client.Models;
-using Jhipster.Dto;
 
 namespace Jhipster.Client.Services.EntityServices.User
 {

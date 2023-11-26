@@ -9,7 +9,7 @@ namespace Jhipster.Client.Pages.Entities.Job
     public partial class JobDetail : ComponentBase
     {
         [Parameter]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Inject]
         public IJobService JobService { get; set; }
@@ -21,6 +21,7 @@ namespace Jhipster.Client.Pages.Entities.Job
 
         protected override async Task OnInitializedAsync()
         {
+
             if (Id != 0)
             {
                 Job = await JobService.Get(Id.ToString());

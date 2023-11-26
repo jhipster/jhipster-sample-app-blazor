@@ -11,65 +11,68 @@ using Jhipster.Client.Models;
 using Jhipster.Client.Pages.Entities.Department;
 using Jhipster.Client.Pages.Utils;
 using Jhipster.Client.Services.EntityServices.Department;
+using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Moq;
 using Xunit;
 
-namespace Jhipster.Client.Test.Pages.Entities.Department
+namespace Jhipster.Client.Test.Pages.Entities.Department;
+
+public class DepartmentDetailTest : TestContext
 {
-    public class DepartmentDetailTest : TestContext
+    private readonly Mock<IDepartmentService> _departmentService;
+    private readonly Mock<INavigationService> _navigationService;
+    private readonly AutoFixture.Fixture _fixture = new AutoFixture.Fixture();
+
+    public DepartmentDetailTest()
     {
-        private readonly Mock<IDepartmentService> _departmentService;
-        private readonly Mock<INavigationService> _navigationService;
-        private readonly AutoFixture.Fixture _fixture = new AutoFixture.Fixture();
+        _departmentService = new Mock<IDepartmentService>();
+        _navigationService = new Mock<INavigationService>();
+        Services.AddSingleton<IDepartmentService>(_departmentService.Object);
+        Services.AddSingleton<INavigationService>(_navigationService.Object);
+        Services.AddBlazorise(options =>
+            {
+                options.Immediate = true;
+            })
+            .Replace(ServiceDescriptor.Transient<IComponentActivator, ComponentActivator>())
+            .AddBootstrapProviders()
+            .AddFontAwesomeIcons();
+        //This code is needed to support recursion
+        _fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
+            .ForEach(b => _fixture.Behaviors.Remove(b));
+        _fixture.Behaviors.Add(new OmitOnRecursionBehavior(1));
+        JSInterop.Mode = JSRuntimeMode.Loose;
+    }
 
-        public DepartmentDetailTest()
-        {
-            _departmentService = new Mock<IDepartmentService>();
-            _navigationService = new Mock<INavigationService>();
-            Services.AddSingleton<IDepartmentService>(_departmentService.Object);
-            Services.AddSingleton<INavigationService>(_navigationService.Object);
-            Services.AddBlazorise(options =>
-                {
-                    options.Immediate = true;
-                })
-                .AddBootstrapProviders()
-                .AddFontAwesomeIcons();
-            //This code is needed to support recursion
-            _fixture.Behaviors.OfType<ThrowingRecursionBehavior>().ToList()
-                .ForEach(b => _fixture.Behaviors.Remove(b));
-            _fixture.Behaviors.Add(new OmitOnRecursionBehavior(1));
-        }
+    [Fact]
+    public void Should_DisplayDepartment_When_IdIsPresent()
+    {
+        //Arrange
+        var department = _fixture.Create<DepartmentModel>();
+        _departmentService.Setup(service => service.Get(It.IsAny<string>())).Returns(Task.FromResult(department));
+        var departmentDetail = RenderComponent<DepartmentDetail>(ComponentParameter.CreateParameter("Id", 1L));
 
-        [Fact]
-        public void Should_DisplayDepartment_When_IdIsPresent()
-        {
-            //Arrange
-            var department = _fixture.Create<DepartmentModel>();
-            _departmentService.Setup(service => service.Get(It.IsAny<string>())).Returns(Task.FromResult(department));
-            var departmentDetail = RenderComponent<DepartmentDetail>(ComponentParameter.CreateParameter("Id", 1));
+        // Act
+        var title = departmentDetail.Find("h2");
 
-            // Act
-            var title = departmentDetail.Find("h2");
+        // Assert
+        title.MarkupMatches($"<h2><span>Department</span>{department.Id}</h2>");
 
-            // Assert
-            title.MarkupMatches($"<h2><span>Department</span>{department.Id}</h2>");
+    }
 
-        }
+    [Fact]
+    public void Should_NotDisplayDepartment_When_IdIsNotPresent()
+    {
+        //Arrange
+        _departmentService.Setup(service => service.Get(It.IsAny<string>())).Returns(Task.FromResult(new DepartmentModel()));
+        var departmentDetail = RenderComponent<DepartmentDetail>();
 
-        [Fact]
-        public void Should_NotDisplayDepartment_When_IdIsNotPresent()
-        {
-            //Arrange
-            _departmentService.Setup(service => service.Get(It.IsAny<string>())).Returns(Task.FromResult(new DepartmentModel()));
-            var departmentDetail = RenderComponent<DepartmentDetail>();
+        // Act
+        var title = departmentDetail.Find("div.col-8");
 
-            // Act
-            var title = departmentDetail.Find("div.col-8");
+        // Assert
+        title.Children.Length.Should().Be(0);
 
-            // Assert
-            title.Children.Length.Should().Be(0);
-
-        }
     }
 }

@@ -15,7 +15,7 @@ namespace Jhipster.Client.Pages.Entities.Department
     public partial class DepartmentUpdate : ComponentBase
     {
         [Parameter]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Inject]
         private IDepartmentService DepartmentService { get; set; }
@@ -38,6 +38,7 @@ namespace Jhipster.Client.Pages.Entities.Department
         {
             Locations = await LocationService.GetAll();
             LocationIds = Locations.Select(location => location.Id).ToList();
+
             if (Id != 0)
             {
                 DepartmentModel = await DepartmentService.Get(Id.ToString());
@@ -53,6 +54,7 @@ namespace Jhipster.Client.Pages.Entities.Department
         private async Task Save()
         {
             DepartmentModel.LocationId = Locations?.SingleOrDefault(location => location.Id.Equals(LocationId))?.Id;
+
             if (Id != 0)
             {
                 await DepartmentService.Update(DepartmentModel);

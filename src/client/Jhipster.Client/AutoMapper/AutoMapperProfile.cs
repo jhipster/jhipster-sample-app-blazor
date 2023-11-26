@@ -2,6 +2,7 @@ using AutoMapper;
 using System.Linq;
 using Jhipster.Client.Models;
 using Jhipster.Dto;
+using Jhipster.Dto.Authentication;
 
 
 namespace Jhipster.Client.AutoMapper

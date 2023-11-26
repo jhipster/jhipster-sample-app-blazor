@@ -9,7 +9,7 @@ namespace Jhipster.Client.Pages.Entities.PieceOfWork
     public partial class PieceOfWorkDetail : ComponentBase
     {
         [Parameter]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Inject]
         public IPieceOfWorkService PieceOfWorkService { get; set; }
@@ -21,6 +21,7 @@ namespace Jhipster.Client.Pages.Entities.PieceOfWork
 
         protected override async Task OnInitializedAsync()
         {
+
             if (Id != 0)
             {
                 PieceOfWork = await PieceOfWorkService.Get(Id.ToString());

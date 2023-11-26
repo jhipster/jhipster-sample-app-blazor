@@ -9,7 +9,7 @@ namespace Jhipster.Client.Pages.Entities.JobHistory
     public partial class JobHistoryDetail : ComponentBase
     {
         [Parameter]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Inject]
         public IJobHistoryService JobHistoryService { get; set; }
@@ -21,6 +21,7 @@ namespace Jhipster.Client.Pages.Entities.JobHistory
 
         protected override async Task OnInitializedAsync()
         {
+
             if (Id != 0)
             {
                 JobHistory = await JobHistoryService.Get(Id.ToString());

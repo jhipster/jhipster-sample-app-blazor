@@ -6,8 +6,9 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using FluentAssertions;
+using FluentAssertions.Extensions;
 using Jhipster.Infrastructure.Data;
-using Jhipster.Domain;
+using Jhipster.Domain.Entities;
 using Jhipster.Domain.Repositories.Interfaces;
 using Jhipster.Crosscutting.Enums;
 using Jhipster.Dto;
@@ -38,10 +39,10 @@ namespace Jhipster.Test.Controllers
         }
 
         private static readonly DateTime DefaultStartDate = DateTime.UnixEpoch;
-        private static readonly DateTime UpdatedStartDate = DateTime.Now;
+        private static readonly DateTime UpdatedStartDate = DateTime.UtcNow;
 
         private static readonly DateTime DefaultEndDate = DateTime.UnixEpoch;
-        private static readonly DateTime UpdatedEndDate = DateTime.Now;
+        private static readonly DateTime UpdatedEndDate = DateTime.UtcNow;
 
         private const Language DefaultLanguage = Language.ENGLISH;
         private const Language UpdatedLanguage = Language.ENGLISH;
@@ -172,8 +173,8 @@ namespace Jhipster.Test.Controllers
             var jobHistoryList = await _jobHistoryRepository.GetAllAsync();
             jobHistoryList.Count().Should().Be(databaseSizeBeforeUpdate);
             var testJobHistory = jobHistoryList.Last();
-            testJobHistory.StartDate.Should().BeCloseTo(UpdatedStartDate);
-            testJobHistory.EndDate.Should().BeCloseTo(UpdatedEndDate);
+            testJobHistory.StartDate.Should().BeCloseTo(UpdatedStartDate, 1.Milliseconds());
+            testJobHistory.EndDate.Should().BeCloseTo(UpdatedEndDate, 1.Milliseconds());
             testJobHistory.Language.Should().Be(UpdatedLanguage);
         }
 

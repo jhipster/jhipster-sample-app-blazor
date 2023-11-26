@@ -11,7 +11,7 @@ namespace Jhipster.Client.Pages.Entities.Region
     public partial class RegionUpdate : ComponentBase
     {
         [Parameter]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Inject]
         private IRegionService RegionService { get; set; }
@@ -23,6 +23,7 @@ namespace Jhipster.Client.Pages.Entities.Region
 
         protected override async Task OnInitializedAsync()
         {
+
             if (Id != 0)
             {
                 RegionModel = await RegionService.Get(Id.ToString());
@@ -36,6 +37,7 @@ namespace Jhipster.Client.Pages.Entities.Region
 
         private async Task Save()
         {
+
             if (Id != 0)
             {
                 await RegionService.Update(RegionModel);

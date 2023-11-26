@@ -1,4 +1,4 @@
-@page "/jobhistory/{Id:int}/view"
+@page "/jobhistory/{Id:long}/view"
 @using Microsoft.AspNetCore.Authorization
 @namespace Jhipster.Client.Pages.Entities.JobHistory
 
@@ -6,6 +6,7 @@
 
 <div class="row justify-content-center">
     <div class="col-8">
+
         @if (JobHistory != null && JobHistory.Id != 0)
         {
             <div>
@@ -30,6 +31,7 @@
                     </dd>
                     <dt><span>Job</span></dt>
                     <dd>
+
                         @if (JobHistory.JobId != 0)
                         {
                             <div>
@@ -39,6 +41,7 @@
                     </dd>
                     <dt><span>Department</span></dt>
                     <dd>
+
                         @if (JobHistory.DepartmentId != 0)
                         {
                             <div>
@@ -48,6 +51,7 @@
                     </dd>
                     <dt><span>Employee</span></dt>
                     <dd>
+
                         @if (JobHistory.EmployeeId != 0)
                         {
                             <div>

@@ -1,12 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Jhipster.Domain
+namespace Jhipster.Domain.Entities;
+
+public class BaseEntity<TKey>
 {
-    public class BaseEntity<TKey>
-    {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public TKey Id { get; set; }
-    }
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public TKey Id { get; set; }
 }

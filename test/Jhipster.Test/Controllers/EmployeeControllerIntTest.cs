@@ -6,8 +6,9 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using FluentAssertions;
+using FluentAssertions.Extensions;
 using Jhipster.Infrastructure.Data;
-using Jhipster.Domain;
+using Jhipster.Domain.Entities;
 using Jhipster.Domain.Repositories.Interfaces;
 using Jhipster.Dto;
 using Jhipster.Configuration.AutoMapper;
@@ -49,7 +50,7 @@ namespace Jhipster.Test.Controllers
         private const string UpdatedPhoneNumber = "BBBBBBBBBB";
 
         private static readonly DateTime DefaultHireDate = DateTime.UnixEpoch;
-        private static readonly DateTime UpdatedHireDate = DateTime.Now;
+        private static readonly DateTime UpdatedHireDate = DateTime.UtcNow;
 
         private static readonly long? DefaultSalary = 1L;
         private static readonly long? UpdatedSalary = 2L;
@@ -207,7 +208,7 @@ namespace Jhipster.Test.Controllers
             testEmployee.LastName.Should().Be(UpdatedLastName);
             testEmployee.Email.Should().Be(UpdatedEmail);
             testEmployee.PhoneNumber.Should().Be(UpdatedPhoneNumber);
-            testEmployee.HireDate.Should().BeCloseTo(UpdatedHireDate);
+            testEmployee.HireDate.Should().BeCloseTo(UpdatedHireDate, 1.Milliseconds());
             testEmployee.Salary.Should().Be(UpdatedSalary);
             testEmployee.CommissionPct.Should().Be(UpdatedCommissionPct);
         }

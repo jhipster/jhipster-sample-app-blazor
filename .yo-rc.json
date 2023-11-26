@@ -6,7 +6,7 @@
     "blueprints": [
       {
         "name": "generator-jhipster-dotnetcore",
-        "version": "3.6.0"
+        "version": "4.0.0"
       }
     ],
     "buildTool": "maven",
@@ -23,19 +23,11 @@
     "enableGradleEnterprise": false,
     "enableHibernateCache": true,
     "enableTranslation": false,
-    "entities": [
-      "Region",
-      "Country",
-      "Location",
-      "Department",
-      "PieceOfWork",
-      "Employee",
-      "Job",
-      "JobHistory"
-    ],
+    "entities": ["Region", "Country", "Location", "Department", "PieceOfWork", "Employee", "Job", "JobHistory"],
     "entitySuffix": "",
     "jhiPrefix": "jhi",
     "jhipsterVersion": "7.8.1",
+    "jwtSecretKey": "YzExODRkZDIxYjViZjdlMTkzZmFjZWQwYWVkMzAxYTY1MThmOTM1Y2RkYzZhYmVlY2Q1ODBmYjcyZDcxNDdkMTIyZmRiMjEyNzdhMTE0YjgxNDdkOWZhZTAwZDUyZDlmMDBjNw==",
     "languages": ["en", "fr"],
     "lastLiquibaseTimestamp": 1653309195000,
     "namespace": "Jhipster",

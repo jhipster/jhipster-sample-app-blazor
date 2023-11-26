@@ -1,4 +1,4 @@
-@page "/pieceofwork/{Id:int}/view"
+@page "/pieceofwork/{Id:long}/view"
 @using Microsoft.AspNetCore.Authorization
 @namespace Jhipster.Client.Pages.Entities.PieceOfWork
 
@@ -6,6 +6,7 @@
 
 <div class="row justify-content-center">
     <div class="col-8">
+
         @if (PieceOfWork != null && PieceOfWork.Id != 0)
         {
             <div>

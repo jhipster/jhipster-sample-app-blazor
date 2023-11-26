@@ -9,7 +9,7 @@ namespace Jhipster.Client.Pages.Entities.Employee
     public partial class EmployeeDetail : ComponentBase
     {
         [Parameter]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Inject]
         public IEmployeeService EmployeeService { get; set; }
@@ -21,6 +21,7 @@ namespace Jhipster.Client.Pages.Entities.Employee
 
         protected override async Task OnInitializedAsync()
         {
+
             if (Id != 0)
             {
                 Employee = await EmployeeService.Get(Id.ToString());
