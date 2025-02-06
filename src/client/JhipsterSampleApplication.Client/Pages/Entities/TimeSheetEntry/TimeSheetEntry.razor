@@ -1,0 +1,108 @@
+@page "/timesheetentry"
+@using Microsoft.AspNetCore.Authorization
+@using JhipsterSampleApplication.Client.Shared.Components
+@namespace JhipsterSampleApplication.Client.Pages.Entities.TimeSheetEntry
+
+@attribute [Authorize(Roles = "ROLE_USER")]
+
+<div>
+    <h2 id="page-heading">
+        <span>TimeSheetEntries</span>
+
+        <Div Class="d-flex justify-content-end">
+            <a id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-timesheetentry" href="/timesheetentry/new">
+                <Icon Name='"fa-plus"' />
+                <span class="hidden-sm-down">
+                    Create a new TimeSheetEntry
+                </span>
+            </a>
+        </Div>
+    </h2>
+
+    @*<jhi-alert-error></jhi-alert-error>
+            TODO ADD ALERT
+        <jhi-alert></jhi-alert>*@
+        <AlertError></AlertError>
+
+
+    @* TODO ADD QUERY SEARCH BAR
+            <div class="row">
+            <div class="col-sm-12">
+                <form name="searchForm" class="form-inline">
+                    <div class="input-group w-100 mt-3">
+                        <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Query">
+                        <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                            <fa-icon icon="search"></fa-icon>
+                        </button>
+                        <button class="input-group-append btn btn-danger" (click)="search('')" *ngIf="currentSearch">
+                            <fa-icon icon="trash-alt"></fa-icon>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>*@
+
+
+    @if (TimeSheetEntries.Count == 0)
+    {
+        <div class="alert alert-warning" id="no-result">
+            <span>No TimeSheetEntries found</span>
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive table-entities" id="entities">
+            <table class="table table-striped" aria-describedby="page-heading">
+                <thead>
+                    <tr>
+                        <th scope="col"><span>ID</span></th>
+                        <th scope="col"><span>Activity Name</span></th>
+                        <th scope="col"><span>Start Time Military</span></th>
+                        <th scope="col"><span>End Time Military</span></th>
+                        <th scope="col"><span>Total Time</span></th>
+                        <th scope="col"><span>Time Sheet</span></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var timesheetentry in TimeSheetEntries)
+                    {
+                        <tr>
+                            <td><a href="/timesheetentry/@timesheetentry.Id/view">@timesheetentry.Id</a></td>
+                            <td>@timesheetentry.ActivityName</td>
+                            <td>@timesheetentry.StartTimeMilitary</td>
+                            <td>@timesheetentry.EndTimeMilitary</td>
+                            <td>@timesheetentry.TotalTime</td>
+                            <td>
+                                @if (timesheetentry.TimeSheetId != null)
+                                {
+                                    <div>
+                                        <a href="/timesheet/@timesheetentry.TimeSheetId/view">@timesheetentry.TimeSheetId</a>
+                                    </div>
+                                }
+                            </td>
+                            <td class="text-end">
+                                <div class="btn-group">
+                                    <a href="/timesheetentry/@timesheetentry.Id/view" class="btn btn-info btn-sm">
+                                        <Icon Name='"fa-eye"'/>
+                                        <span class="d-none d-md-inline">View</span>
+                                    </a>
+
+                                    <a href="/timesheetentry/@timesheetentry.Id/edit" class="btn btn-primary btn-sm">
+                                        <Icon Name='"fa-pencil-alt"'/>
+                                        <span class="d-none d-md-inline">Edit</span>
+                                    </a>
+
+                                    <button @onclick="() => Delete(timesheetentry.Id)" class="btn btn-danger btn-sm">
+                                        <Icon Name='"fa-times"'/>
+                                        <span class="d-none d-md-inline">Delete</span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

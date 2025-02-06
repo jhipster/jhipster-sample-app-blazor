@@ -1,0 +1,95 @@
+@page "/pieceofwork"
+@using Microsoft.AspNetCore.Authorization
+@using JhipsterSampleApplication.Client.Shared.Components
+@namespace JhipsterSampleApplication.Client.Pages.Entities.PieceOfWork
+
+@attribute [Authorize(Roles = "ROLE_USER")]
+
+<div>
+    <h2 id="page-heading">
+        <span>PieceOfWorks</span>
+
+        <Div Class="d-flex justify-content-end">
+            <a id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-pieceofwork" href="/pieceofwork/new">
+                <Icon Name='"fa-plus"' />
+                <span class="hidden-sm-down">
+                    Create a new PieceOfWork
+                </span>
+            </a>
+        </Div>
+    </h2>
+
+    @*<jhi-alert-error></jhi-alert-error>
+            TODO ADD ALERT
+        <jhi-alert></jhi-alert>*@
+        <AlertError></AlertError>
+
+
+    @* TODO ADD QUERY SEARCH BAR
+            <div class="row">
+            <div class="col-sm-12">
+                <form name="searchForm" class="form-inline">
+                    <div class="input-group w-100 mt-3">
+                        <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Query">
+                        <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                            <fa-icon icon="search"></fa-icon>
+                        </button>
+                        <button class="input-group-append btn btn-danger" (click)="search('')" *ngIf="currentSearch">
+                            <fa-icon icon="trash-alt"></fa-icon>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>*@
+
+
+    @if (PieceOfWorks.Count == 0)
+    {
+        <div class="alert alert-warning" id="no-result">
+            <span>No PieceOfWorks found</span>
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive table-entities" id="entities">
+            <table class="table table-striped" aria-describedby="page-heading">
+                <thead>
+                    <tr>
+                        <th scope="col"><span>ID</span></th>
+                        <th scope="col"><span>Title</span></th>
+                        <th scope="col"><span>Description</span></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var pieceofwork in PieceOfWorks)
+                    {
+                        <tr>
+                            <td><a href="/pieceofwork/@pieceofwork.Id/view">@pieceofwork.Id</a></td>
+                            <td>@pieceofwork.Title</td>
+                            <td>@pieceofwork.Description</td>
+                            <td class="text-end">
+                                <div class="btn-group">
+                                    <a href="/pieceofwork/@pieceofwork.Id/view" class="btn btn-info btn-sm">
+                                        <Icon Name='"fa-eye"'/>
+                                        <span class="d-none d-md-inline">View</span>
+                                    </a>
+
+                                    <a href="/pieceofwork/@pieceofwork.Id/edit" class="btn btn-primary btn-sm">
+                                        <Icon Name='"fa-pencil-alt"'/>
+                                        <span class="d-none d-md-inline">Edit</span>
+                                    </a>
+
+                                    <button @onclick="() => Delete(pieceofwork.Id)" class="btn btn-danger btn-sm">
+                                        <Icon Name='"fa-times"'/>
+                                        <span class="d-none d-md-inline">Delete</span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

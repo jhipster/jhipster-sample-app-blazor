@@ -1,0 +1,62 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\content\scss\*" />
+    <Content Remove="wwwroot\lib\bootstrap\scss\*" />
+    <Content Remove="wwwroot\lib\bootstrap\scss\**\*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\content\scss\*" />
+    <None Include="wwwroot\lib\bootstrap\scss\*" />
+    <None Include="wwwroot\lib\bootstrap\scss\**\*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" />
+    <PackageReference Include="Blazored.Modal" />
+    <PackageReference Include="Blazored.SessionStorage" />
+    <PackageReference Include="Blazorise.Bootstrap5" />
+    <PackageReference Include="Blazorise.Icons.FontAwesome" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" />
+    <PackageReference Include="Microsoft.Web.LibraryManager.Build" />
+    <PackageReference Include="System.Net.Http.Json" />
+    <PackageReference Include="Toolbelt.Blazor.HttpClientInterceptor" />
+  </ItemGroup>
+
+  <Target Name="RestoreFrontEndLibraries" BeforeTargets="BeforeBuild">
+    <Exec Command="libman restore" LogStandardErrorAsError="true" />
+  </Target>
+
+  <Target Name="CompileStaticAssets" AfterTargets="AfterBuild">
+    <Exec Command="webcompiler -r wwwroot/content/scss -o wwwroot/content/css -z disable" Condition="'$(Configuration)'=='Debug'" StandardOutputImportance="high" />
+    <Exec Command="webcompiler -r wwwroot/content/scss -o wwwroot/content/css -z disable -p disable" Condition="'$(Configuration)'=='Release'" StandardOutputImportance="high" />
+  </Target>
+
+  <ItemGroup>
+    <!--specify file extensions here as needed-->
+    <Watch Include="**\*.scss" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\JhipsterSampleApplication.Dto\JhipsterSampleApplication.Dto.csproj" />
+    <ProjectReference Include="..\JhipsterSampleApplication.Client.Shared\JhipsterSampleApplication.Client.Shared.csproj" />
+    <ProjectReference Include="..\..\JhipsterSampleApplication.Crosscutting\JhipsterSampleApplication.Crosscutting.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="wwwroot\content\css\" />
+  </ItemGroup>
+
+
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
+
+</Project>

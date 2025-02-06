@@ -1,0 +1,44 @@
+@page "/timesheet/{Id:Guid}/view"
+@using Microsoft.AspNetCore.Authorization
+@namespace JhipsterSampleApplication.Client.Pages.Entities.TimeSheet
+
+@attribute [Authorize(Roles = "ROLE_USER")]
+
+<div class="d-flex justify-content-center">
+    <div class="col-8">
+        @if (TimeSheet != null && TimeSheet.Id != null)
+        {
+            <div>
+                <h2><span>TimeSheet</span>@TimeSheet.Id</h2>
+
+                <hr>
+
+                @*<jhi-alert-error></jhi-alert-error>*@
+
+                <dl class="row-md jh-entity-details">
+                    <dt><span>Time Sheet Date</span></dt>
+                    <dd>
+                        <span>@TimeSheet.TimeSheetDate</span>
+                    </dd>
+                    <dt><span>Employee</span></dt>
+                    <dd>
+                        @if (TimeSheet.EmployeeId != 0)
+                        {
+                            <div>
+                                <a href="/employee/@TimeSheet.Id/view">@TimeSheet.EmployeeId</a>
+                            </div>
+                        }
+                    </dd>
+                </dl>
+
+                <button @onclick="Back" class="btn btn-info">
+                    <Icon Name='"fa-arrow-left"' />&nbsp;<span>Back</span>
+                </button>
+
+                <a href="/timesheet/@TimeSheet.Id/edit" class="btn btn-primary">
+                    <Icon Name='"fa-pencil-alt"' />&nbsp;<span>Edit</span>
+                </a>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,61 @@
+@page "/job/{Id:long}/view"
+@using Microsoft.AspNetCore.Authorization
+@namespace JhipsterSampleApplication.Client.Pages.Entities.Job
+
+@attribute [Authorize(Roles = "ROLE_USER")]
+
+<div class="d-flex justify-content-center">
+    <div class="col-8">
+        @if (Job != null && Job.Id != 0 && Job.Id.ToString().Length > 0)
+        {
+            <div>
+                <h2><span>Job</span>@Job.Id</h2>
+
+                <hr>
+
+                @*<jhi-alert-error></jhi-alert-error>*@
+
+                <dl class="row-md jh-entity-details">
+                    <dt><span>Job Title</span></dt>
+                    <dd>
+                        <span>@Job.JobTitle</span>
+                    </dd>
+                    <dt><span>Min Salary</span></dt>
+                    <dd>
+                        <span>@Job.MinSalary</span>
+                    </dd>
+                    <dt><span>Max Salary</span></dt>
+                    <dd>
+                        <span>@Job.MaxSalary</span>
+                    </dd>
+                    <dt><span>Chore</span></dt>
+                    <dd>
+                        @foreach (var pieceofwork in Job.Chores){
+                            <span>
+                                <a href="/pieceofwork/@pieceofwork.Id/view">@pieceofwork.Id</a>
+                                @if (pieceofwork != Job.Chores.Last()) { <span>, </span>}
+                            </span>
+                        }
+                    </dd>
+                    <dt><span>Employee</span></dt>
+                    <dd>
+                        @if (Job.EmployeeId != 0)
+                        {
+                            <div>
+                                <a href="/employee/@Job.Id/view">@Job.EmployeeId</a>
+                            </div>
+                        }
+                    </dd>
+                </dl>
+
+                <button @onclick="Back" class="btn btn-info">
+                    <Icon Name='"fa-arrow-left"' />&nbsp;<span>Back</span>
+                </button>
+
+                <a href="/job/@Job.Id/edit" class="btn btn-primary">
+                    <Icon Name='"fa-pencil-alt"' />&nbsp;<span>Edit</span>
+                </a>
+            </div>
+        }
+    </div>
+</div>

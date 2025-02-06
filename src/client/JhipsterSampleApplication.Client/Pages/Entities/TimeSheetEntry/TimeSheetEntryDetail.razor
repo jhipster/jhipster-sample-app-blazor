@@ -1,0 +1,56 @@
+@page "/timesheetentry/{Id:long}/view"
+@using Microsoft.AspNetCore.Authorization
+@namespace JhipsterSampleApplication.Client.Pages.Entities.TimeSheetEntry
+
+@attribute [Authorize(Roles = "ROLE_USER")]
+
+<div class="d-flex justify-content-center">
+    <div class="col-8">
+        @if (TimeSheetEntry != null && TimeSheetEntry.Id != 0 && TimeSheetEntry.Id.ToString().Length > 0)
+        {
+            <div>
+                <h2><span>TimeSheetEntry</span>@TimeSheetEntry.Id</h2>
+
+                <hr>
+
+                @*<jhi-alert-error></jhi-alert-error>*@
+
+                <dl class="row-md jh-entity-details">
+                    <dt><span>Activity Name</span></dt>
+                    <dd>
+                        <span>@TimeSheetEntry.ActivityName</span>
+                    </dd>
+                    <dt><span>Start Time Military</span></dt>
+                    <dd>
+                        <span>@TimeSheetEntry.StartTimeMilitary</span>
+                    </dd>
+                    <dt><span>End Time Military</span></dt>
+                    <dd>
+                        <span>@TimeSheetEntry.EndTimeMilitary</span>
+                    </dd>
+                    <dt><span>Total Time</span></dt>
+                    <dd>
+                        <span>@TimeSheetEntry.TotalTime</span>
+                    </dd>
+                    <dt><span>TimeSheet</span></dt>
+                    <dd>
+                                    @if (TimeSheetEntry.TimeSheetId != null)
+                        {
+                            <div>
+                                <a href="/timesheet/@TimeSheetEntry.Id/view">@TimeSheetEntry.TimeSheetId</a>
+                            </div>
+                        }
+                    </dd>
+                </dl>
+
+                <button @onclick="Back" class="btn btn-info">
+                    <Icon Name='"fa-arrow-left"' />&nbsp;<span>Back</span>
+                </button>
+
+                <a href="/timesheetentry/@TimeSheetEntry.Id/edit" class="btn btn-primary">
+                    <Icon Name='"fa-pencil-alt"' />&nbsp;<span>Edit</span>
+                </a>
+            </div>
+        }
+    </div>
+</div>

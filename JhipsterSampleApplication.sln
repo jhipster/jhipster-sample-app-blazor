@@ -1,0 +1,95 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CDF5E36F-28F7-4EFA-BDBA-06EAB18166BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JhipsterSampleApplication", "src\JhipsterSampleApplication\JhipsterSampleApplication.csproj", "{774295DF-5730-4D8C-BBD2-D10C5CE285E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{CFA741BF-B6D2-4375-BE40-1836FC9B45DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JhipsterSampleApplication.Test", "test\JhipsterSampleApplication.Test\JhipsterSampleApplication.Test.csproj", "{4344FEDC-5DC6-41A1-A7F7-46E1F841945E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JhipsterSampleApplication.Crosscutting", "src\JhipsterSampleApplication.Crosscutting\JhipsterSampleApplication.Crosscutting.csproj", "{B60B66A1-0365-47C2-9069-8C0CC4290B2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JhipsterSampleApplication.Domain", "src\JhipsterSampleApplication.Domain\JhipsterSampleApplication.Domain.csproj", "{6E26EF38-2228-4F9C-9DB3-5E33DA8E3F70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JhipsterSampleApplication.Dto", "src\JhipsterSampleApplication.Dto\JhipsterSampleApplication.Dto.csproj", "{6A70E13A-2226-4643-9E0B-0E6586BFE318}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JhipsterSampleApplication.Domain.Services", "src\JhipsterSampleApplication.Domain.Services\JhipsterSampleApplication.Domain.Services.csproj", "{8664926C-47C2-4291-8E45-10474F35E875}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JhipsterSampleApplication.Infrastructure", "src\JhipsterSampleApplication.Infrastructure\JhipsterSampleApplication.Infrastructure.csproj", "{188B11EB-706A-471D-AF1B-28BDDDDEAAE5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "client", "client", "{2E39FE44-8D9A-43E4-BF9B-08AD84C2C49C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JhipsterSampleApplication.Client", "src\client\JhipsterSampleApplication.Client\JhipsterSampleApplication.Client.csproj", "{02F6E9E3-7111-4BC3-9855-C845AB9748CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JhipsterSampleApplication.Client.Shared", "src\client\JhipsterSampleApplication.Client.Shared\JhipsterSampleApplication.Client.Shared.csproj", "{390A52DC-8FD0-453A-BAEA-29E2A472A712}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JhipsterSampleApplication.Client.Test", "test\JhipsterSampleApplication.Client.Test\JhipsterSampleApplication.Client.Test.csproj", "{FC7948D8-E9BB-4920-BEE3-ABF79AD571AC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{774295DF-5730-4D8C-BBD2-D10C5CE285E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{774295DF-5730-4D8C-BBD2-D10C5CE285E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{774295DF-5730-4D8C-BBD2-D10C5CE285E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{774295DF-5730-4D8C-BBD2-D10C5CE285E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4344FEDC-5DC6-41A1-A7F7-46E1F841945E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4344FEDC-5DC6-41A1-A7F7-46E1F841945E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4344FEDC-5DC6-41A1-A7F7-46E1F841945E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4344FEDC-5DC6-41A1-A7F7-46E1F841945E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B60B66A1-0365-47C2-9069-8C0CC4290B2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B60B66A1-0365-47C2-9069-8C0CC4290B2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B60B66A1-0365-47C2-9069-8C0CC4290B2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B60B66A1-0365-47C2-9069-8C0CC4290B2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E26EF38-2228-4F9C-9DB3-5E33DA8E3F70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E26EF38-2228-4F9C-9DB3-5E33DA8E3F70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E26EF38-2228-4F9C-9DB3-5E33DA8E3F70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E26EF38-2228-4F9C-9DB3-5E33DA8E3F70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A70E13A-2226-4643-9E0B-0E6586BFE318}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A70E13A-2226-4643-9E0B-0E6586BFE318}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A70E13A-2226-4643-9E0B-0E6586BFE318}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A70E13A-2226-4643-9E0B-0E6586BFE318}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8664926C-47C2-4291-8E45-10474F35E875}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8664926C-47C2-4291-8E45-10474F35E875}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8664926C-47C2-4291-8E45-10474F35E875}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8664926C-47C2-4291-8E45-10474F35E875}.Release|Any CPU.Build.0 = Release|Any CPU
+		{188B11EB-706A-471D-AF1B-28BDDDDEAAE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{188B11EB-706A-471D-AF1B-28BDDDDEAAE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{188B11EB-706A-471D-AF1B-28BDDDDEAAE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{188B11EB-706A-471D-AF1B-28BDDDDEAAE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02F6E9E3-7111-4BC3-9855-C845AB9748CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02F6E9E3-7111-4BC3-9855-C845AB9748CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02F6E9E3-7111-4BC3-9855-C845AB9748CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02F6E9E3-7111-4BC3-9855-C845AB9748CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{390A52DC-8FD0-453A-BAEA-29E2A472A712}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{390A52DC-8FD0-453A-BAEA-29E2A472A712}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{390A52DC-8FD0-453A-BAEA-29E2A472A712}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{390A52DC-8FD0-453A-BAEA-29E2A472A712}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC7948D8-E9BB-4920-BEE3-ABF79AD571AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC7948D8-E9BB-4920-BEE3-ABF79AD571AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC7948D8-E9BB-4920-BEE3-ABF79AD571AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC7948D8-E9BB-4920-BEE3-ABF79AD571AC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{774295DF-5730-4D8C-BBD2-D10C5CE285E2} = {CDF5E36F-28F7-4EFA-BDBA-06EAB18166BA}
+		{4344FEDC-5DC6-41A1-A7F7-46E1F841945E} = {CFA741BF-B6D2-4375-BE40-1836FC9B45DB}
+		{B60B66A1-0365-47C2-9069-8C0CC4290B2D} = {CDF5E36F-28F7-4EFA-BDBA-06EAB18166BA}
+		{6E26EF38-2228-4F9C-9DB3-5E33DA8E3F70} = {CDF5E36F-28F7-4EFA-BDBA-06EAB18166BA}
+		{6A70E13A-2226-4643-9E0B-0E6586BFE318} = {CDF5E36F-28F7-4EFA-BDBA-06EAB18166BA}
+		{8664926C-47C2-4291-8E45-10474F35E875} = {CDF5E36F-28F7-4EFA-BDBA-06EAB18166BA}
+		{188B11EB-706A-471D-AF1B-28BDDDDEAAE5} = {CDF5E36F-28F7-4EFA-BDBA-06EAB18166BA}
+		{2E39FE44-8D9A-43E4-BF9B-08AD84C2C49C} = {CDF5E36F-28F7-4EFA-BDBA-06EAB18166BA}
+		{02F6E9E3-7111-4BC3-9855-C845AB9748CD} = {2E39FE44-8D9A-43E4-BF9B-08AD84C2C49C}
+		{390A52DC-8FD0-453A-BAEA-29E2A472A712} = {2E39FE44-8D9A-43E4-BF9B-08AD84C2C49C}
+		{FC7948D8-E9BB-4920-BEE3-ABF79AD571AC} = {CFA741BF-B6D2-4375-BE40-1836FC9B45DB}
+	EndGlobalSection
+EndGlobal

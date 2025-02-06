@@ -2,55 +2,46 @@
   "generator-jhipster": {
     "applicationType": "monolith",
     "authenticationType": "jwt",
-    "baseName": "Jhipster",
+    "baseName": "JhipsterSampleApplication",
     "blueprints": [
       {
-        "name": "generator-jhipster-dotnetcore",
-        "version": "4.0.0"
+        "name": "generator-jhipster-dotnetcore"
       }
     ],
-    "buildTool": "maven",
-    "cacheProvider": "ehcache",
     "clientFramework": "Blazor",
     "clientPackageManager": "npm",
     "clientTheme": "none",
-    "clientThemeVariant": "",
-    "creationTimestamp": 1606076717267,
+    "creationTimestamp": 1585496278113,
     "databaseType": "sqllite",
-    "devDatabaseType": "h2Disk",
-    "devServerPort": 9060,
-    "dtoSuffix": "DTO",
-    "enableGradleEnterprise": false,
-    "enableHibernateCache": true,
+    "dtoSuffix": "Dto",
     "enableTranslation": false,
-    "entities": ["Region", "Country", "Location", "Department", "PieceOfWork", "Employee", "Job", "JobHistory"],
+    "entities": [
+      "Country",
+      "Department",
+      "Employee",
+      "Job",
+      "JobHistory",
+      "Location",
+      "PieceOfWork",
+      "Region",
+      "TimeSheet",
+      "TimeSheetEntry"
+    ],
     "entitySuffix": "",
     "jhiPrefix": "jhi",
-    "jhipsterVersion": "7.8.1",
-    "jwtSecretKey": "YzExODRkZDIxYjViZjdlMTkzZmFjZWQwYWVkMzAxYTY1MThmOTM1Y2RkYzZhYmVlY2Q1ODBmYjcyZDcxNDdkMTIyZmRiMjEyNzdhMTE0YjgxNDdkOWZhZTAwZDUyZDlmMDBjNw==",
-    "languages": ["en", "fr"],
-    "lastLiquibaseTimestamp": 1653309195000,
-    "namespace": "Jhipster",
-    "nativeLanguage": "en",
-    "otherModules": [
-      {
-        "name": "generator-jhipster-dotnetcore",
-        "version": "3.6.0"
-      }
-    ],
-    "packageName": "com.mycompany.myapp",
-    "pages": [],
+    "jhipsterVersion": "8.8.0",
+    "jwtSecretKey": "MjFjYmUyMDg2NjdjODI1MTdjOGQ3NDY3ZjE0NWEyMGUyMDMyNTcyZTFmMWNhYTJmNzQ1ZTVhNzkzMjBiM2UxY2Y4NDA0OWE2NTE3ZTdlYjY4YjExYTEyYTgzODNlNDZmMTZkMQ==",
+    "lastLiquibaseTimestamp": 1738863094000,
+    "namespace": "JhipsterSampleApplication",
+    "packageName": "JhipsterSampleApplication",
     "prodDatabaseType": "mysql",
-    "reactive": false,
-    "searchEngine": false,
     "serverPort": "5000",
-    "serviceDiscoveryType": false,
-    "skipCheckLengthOfIdentifier": false,
-    "skipFakeData": false,
-    "skipUserManagement": false,
-    "testFrameworks": [],
+    "skipCommitHook": true,
+    "skipJhipsterDependencies": true,
     "useSass": true,
-    "websocket": false,
-    "withAdminUi": true
+    "withAdminUi": false
+  },
+  "generator-jhipster-dotnetcore": {
+    "ciType": "Github"
   }
 }

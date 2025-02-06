@@ -1,4 +1,9 @@
 {
+  "name": "jhipster-sample-application",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Description for Jhipster Sample Application",
+  "license": "UNLICENSED",
   "scripts": {
     "app:up": "docker compose -f docker/app.yml up --wait",
     "ci:e2e:prepare": "npm run ci:e2e:prepare:docker",
@@ -6,12 +11,17 @@
     "ci:e2e:run": "concurrently -k -s first \"npm run ci:e2e:server:start\" \"npm run e2e:headless\"",
     "ci:e2e:server:start": "docker compose -f docker/app.yml up --wait",
     "ci:e2e:teardown": "npm run ci:e2e:teardown:docker --if-present",
-    "docker:db:up": "echo \"Docker for db sqllite not configured for application Jhipster\"",
-    "test": "cd test/Jhipster.Client.Test/ && dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover"
+    "docker:db:up": "echo \"Docker for db sqllite not configured for application JhipsterSampleApplication\"",
+    "test": "cd test/JhipsterSampleApplication.Client.Test/ && dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover"
   },
+  "config": {
+    "default_environment": "prod"
+  },
+  "dependencies": {},
   "devDependencies": {
-    "concurrently": "8.2.2",
-    "generator-jhipster": "7.8.1",
-    "generator-jhipster-dotnetcore": "4.0.0"
-  }
+    "concurrently": "9.1.0",
+    "prettier": "3.4.2",
+    "prettier-plugin-packagejson": "2.5.6"
+  },
+  "engines": {}
 }

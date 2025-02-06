@@ -1,0 +1,64 @@
+@page "/department/new"
+@page "/department/{Id:long}/edit"
+@using Microsoft.AspNetCore.Authorization
+
+@namespace JhipsterSampleApplication.Client.Pages.Entities.Department
+
+@attribute [Authorize(Roles = "ROLE_USER")]
+
+<div class="d-flex justify-content-center">
+    <div class="col-8">
+        <EditForm Model="@DepartmentModel" OnValidSubmit="@Save">
+            <h2 id="jhi-department-heading">Create or edit a Department</h2>
+            <div>
+                @*
+                    TODO ADD ERROR
+                    <jhi-alert-error></jhi-alert-error>
+                *@
+
+
+                @if (Id != 0 && Id.ToString().Length > 0)
+                {
+                    <div row mb-3>
+                        <label for="id">ID</label>
+                        <input type="text" class="form-control" id="id" name="id" readonly @bind-value="@DepartmentModel.Id" />
+                    </div>
+                }
+
+                <div row mb-3>
+                    <label class="form-label" for="field_departmentName">Department Name</label>
+                    <input type="text" class="form-control" name="departmentName" id="field_departmentName"
+                            @bind-value="@DepartmentModel.DepartmentName" />
+                </div>
+
+                <div row mb-3>
+                    <label class="form-label" for="field_location">Locations</label>
+                    <select class="form-control" id="field_location" name="location" @bind="@LocationId">
+                        <option value="0"></option>
+                        @foreach (var location in LocationIds)
+                        {
+                            if (Id  != 0&& location == DepartmentModel?.LocationId)
+                            {
+                                <option selected="selected">@location</option>
+                            }
+                            else
+                            {
+                                <option>@location</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" @onclick="Back">
+                    <Icon Name='"fa-ban"' />&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" class="btn btn-primary">
+                    <Icon Name='"fa-save"' />&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </EditForm>
+    </div>
+</div>

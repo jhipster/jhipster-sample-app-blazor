@@ -1,0 +1,44 @@
+@page "/department/{Id:long}/view"
+@using Microsoft.AspNetCore.Authorization
+@namespace JhipsterSampleApplication.Client.Pages.Entities.Department
+
+@attribute [Authorize(Roles = "ROLE_USER")]
+
+<div class="d-flex justify-content-center">
+    <div class="col-8">
+        @if (Department != null && Department.Id != 0 && Department.Id.ToString().Length > 0)
+        {
+            <div>
+                <h2><span>Department</span>@Department.Id</h2>
+
+                <hr>
+
+                @*<jhi-alert-error></jhi-alert-error>*@
+
+                <dl class="row-md jh-entity-details">
+                    <dt><span>Department Name</span></dt>
+                    <dd>
+                        <span>@Department.DepartmentName</span>
+                    </dd>
+                    <dt><span>Location</span></dt>
+                    <dd>
+                        @if (Department.LocationId != 0)
+                        {
+                            <div>
+                                <a href="/location/@Department.Id/view">@Department.LocationId</a>
+                            </div>
+                        }
+                    </dd>
+                </dl>
+
+                <button @onclick="Back" class="btn btn-info">
+                    <Icon Name='"fa-arrow-left"' />&nbsp;<span>Back</span>
+                </button>
+
+                <a href="/department/@Department.Id/edit" class="btn btn-primary">
+                    <Icon Name='"fa-pencil-alt"' />&nbsp;<span>Edit</span>
+                </a>
+            </div>
+        }
+    </div>
+</div>

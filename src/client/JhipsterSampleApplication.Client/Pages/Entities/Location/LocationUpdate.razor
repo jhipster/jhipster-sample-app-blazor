@@ -1,0 +1,79 @@
+@page "/location/new"
+@page "/location/{Id:long}/edit"
+@using Microsoft.AspNetCore.Authorization
+
+@namespace JhipsterSampleApplication.Client.Pages.Entities.Location
+
+@attribute [Authorize(Roles = "ROLE_USER")]
+
+<div class="d-flex justify-content-center">
+    <div class="col-8">
+        <EditForm Model="@LocationModel" OnValidSubmit="@Save">
+            <h2 id="jhi-location-heading">Create or edit a Location</h2>
+            <div>
+                @*
+                    TODO ADD ERROR
+                    <jhi-alert-error></jhi-alert-error>
+                *@
+
+
+                @if (Id != 0 && Id.ToString().Length > 0)
+                {
+                    <div row mb-3>
+                        <label for="id">ID</label>
+                        <input type="text" class="form-control" id="id" name="id" readonly @bind-value="@LocationModel.Id" />
+                    </div>
+                }
+
+                <div row mb-3>
+                    <label class="form-label" for="field_streetAddress">Street Address</label>
+                    <input type="text" class="form-control" name="streetAddress" id="field_streetAddress"
+                            @bind-value="@LocationModel.StreetAddress" />
+                </div>
+                <div row mb-3>
+                    <label class="form-label" for="field_postalCode">Postal Code</label>
+                    <input type="text" class="form-control" name="postalCode" id="field_postalCode"
+                            @bind-value="@LocationModel.PostalCode" />
+                </div>
+                <div row mb-3>
+                    <label class="form-label" for="field_city">City</label>
+                    <input type="text" class="form-control" name="city" id="field_city"
+                            @bind-value="@LocationModel.City" />
+                </div>
+                <div row mb-3>
+                    <label class="form-label" for="field_stateProvince">State Province</label>
+                    <input type="text" class="form-control" name="stateProvince" id="field_stateProvince"
+                            @bind-value="@LocationModel.StateProvince" />
+                </div>
+
+                <div row mb-3>
+                    <label class="form-label" for="field_country">Countries</label>
+                    <select class="form-control" id="field_country" name="country" @bind="@CountryId">
+                        <option value="0"></option>
+                        @foreach (var country in CountryIds)
+                        {
+                            if (Id  != 0&& country == LocationModel?.CountryId)
+                            {
+                                <option selected="selected">@country</option>
+                            }
+                            else
+                            {
+                                <option>@country</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" @onclick="Back">
+                    <Icon Name='"fa-ban"' />&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" class="btn btn-primary">
+                    <Icon Name='"fa-save"' />&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </EditForm>
+    </div>
+</div>

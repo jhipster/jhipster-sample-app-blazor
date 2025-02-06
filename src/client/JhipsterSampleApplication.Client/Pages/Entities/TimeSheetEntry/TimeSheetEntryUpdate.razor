@@ -1,0 +1,79 @@
+@page "/timesheetentry/new"
+@page "/timesheetentry/{Id:long}/edit"
+@using Microsoft.AspNetCore.Authorization
+
+@namespace JhipsterSampleApplication.Client.Pages.Entities.TimeSheetEntry
+
+@attribute [Authorize(Roles = "ROLE_USER")]
+
+<div class="d-flex justify-content-center">
+    <div class="col-8">
+        <EditForm Model="@TimeSheetEntryModel" OnValidSubmit="@Save">
+            <h2 id="jhi-timesheetentry-heading">Create or edit a TimeSheetEntry</h2>
+            <div>
+                @*
+                    TODO ADD ERROR
+                    <jhi-alert-error></jhi-alert-error>
+                *@
+
+
+                @if (Id != 0 && Id.ToString().Length > 0)
+                {
+                    <div row mb-3>
+                        <label for="id">ID</label>
+                        <input type="text" class="form-control" id="id" name="id" readonly @bind-value="@TimeSheetEntryModel.Id" />
+                    </div>
+                }
+
+                <div row mb-3>
+                    <label class="form-label" for="field_activityName">Activity Name</label>
+                    <input type="text" class="form-control" name="activityName" id="field_activityName"
+                            @bind-value="@TimeSheetEntryModel.ActivityName" />
+                </div>
+                <div row mb-3>
+                    <label class="form-label" for="field_startTimeMilitary">Start Time Military</label>
+                    <input type="text" class="form-control" name="startTimeMilitary" id="field_startTimeMilitary"
+                            @bind-value="@TimeSheetEntryModel.StartTimeMilitary" />
+                </div>
+                <div row mb-3>
+                    <label class="form-label" for="field_endTimeMilitary">End Time Military</label>
+                    <input type="text" class="form-control" name="endTimeMilitary" id="field_endTimeMilitary"
+                            @bind-value="@TimeSheetEntryModel.EndTimeMilitary" />
+                </div>
+                <div row mb-3>
+                    <label class="form-label" for="field_totalTime">Total Time</label>
+                    <input type="text" class="form-control" name="totalTime" id="field_totalTime"
+                            @bind-value="@TimeSheetEntryModel.TotalTime" />
+                </div>
+
+                <div row mb-3>
+                    <label class="form-label" for="field_timesheet">TimeSheets</label>
+                    <select class="form-control" id="field_timesheet" name="timesheet" @bind="@TimeSheetId">
+                        <option value="0"></option>
+                        @foreach (var timesheet in TimeSheetIds)
+                        {
+                            if (Id  != 0&& timesheet == TimeSheetEntryModel?.TimeSheetId)
+                            {
+                                <option selected="selected">@timesheet</option>
+                            }
+                            else
+                            {
+                                <option>@timesheet</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" @onclick="Back">
+                    <Icon Name='"fa-ban"' />&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" class="btn btn-primary">
+                    <Icon Name='"fa-save"' />&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </EditForm>
+    </div>
+</div>

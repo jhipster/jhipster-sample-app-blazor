@@ -1,8 +1,8 @@
-# Jhipster
+# JhipsterSampleApplication
 
-This application was generated using JHipster 7.8.1, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v7.8.1](https://www.jhipster.tech/documentation-archive/v7.8.1).
+This application was generated using JHipster 8.8.0, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v8.8.0](https://www.jhipster.tech/documentation-archive/v8.8.0).
 
-This application was generated using JHipster 7.8.1 and JHipster .Net Core , you can find documentation and help at https://jhipsternet.readthedocs.io/en/latest/index.html and [https://www.jhipster.tech/documentation-archive/v7.8.1](https://www.jhipster.tech/documentation-archive/v7.8.1).
+This application was generated using JHipster 8.8.0 and JHipster .Net Core , you can find documentation and help at https://jhipsternet.readthedocs.io/en/latest/index.html and [https://www.jhipster.tech/documentation-archive/v8.8.0](https://www.jhipster.tech/documentation-archive/v8.8.0).
 
 ## Project Structure
 
@@ -16,7 +16,7 @@ In the project root, JHipster generates configuration files for tools like git, 
   Allows to use a specific action when conflicts are found skipping prompts for files that matches a pattern. Each line should match `[pattern] [action]` with pattern been a [Minimatch](https://github.com/isaacs/minimatch#minimatch) pattern and action been one of skip (default if ommited) or force. Lines starting with `#` are considered comments and are ignored.
 - `.jhipster/*.json` - JHipster entity configuration files
 - `docker/` - Docker configurations for the application and services that the application depends on
-- `src/Jhipster/ClientApp/` - Web Application folder
+- `src/JhipsterSampleApplication/ClientApp/` - Web Application folder
 
 ## Development
 
@@ -32,13 +32,13 @@ dotnet tool install -g Excubo.WebCompiler
 To start your application in the Debug configuration, simply run:
 
 ```bash
-dotnet run --verbosity normal --project ./src/Jhipster/Jhipster.csproj
+dotnet run --verbosity normal --project ./src/JhipsterSampleApplication/JhipsterSampleApplication.csproj
 ```
 
 and
 
 ```bash
-dotnet run --verbosity normal --project ./src/client/Jhipster.Client/Jhipster.Client.csproj
+dotnet run --verbosity normal --project ./src/client/JhipsterSampleApplication.Client/JhipsterSampleApplication.Client.csproj
 ```
 
 You can also use the **hotreload**
@@ -46,28 +46,28 @@ You can also use the **hotreload**
 For the backend
 
 ```bash
-dotnet watch --project ./src/Jhipster/Jhipster.csproj run --verbosity normal
+dotnet watch --project ./src/JhipsterSampleApplication/JhipsterSampleApplication.csproj run --verbosity normal
 ```
 
 For the frontend
 
 ```bash
-dotnet watch --project ./src/client/Jhipster.Client/Jhipster.Client.csproj run --verbosity normal
+dotnet watch --project ./src/client/JhipsterSampleApplication.Client/JhipsterSampleApplication.Client.csproj run --verbosity normal
 ```
 
 ## Building for production
 
 ### .Net Production builds
 
-To build the artifacts and optimize the Jhipster application for production, run:
+To build the artifacts and optimize the JhipsterSampleApplication application for production, run:
 
 ```
-cd ./src/Jhipster
-rm -rf ./src/Jhipster/wwwroot
-dotnet publish --verbosity normal -c Release -o ./app/out ./Jhipster.csproj
+cd ./src/JhipsterSampleApplication
+rm -rf ./src/JhipsterSampleApplication/wwwroot
+dotnet publish --verbosity normal -c Release -o ./app/out ./JhipsterSampleApplication.csproj
 ```
 
-The `./src/Jhipster/app/out` directory will contain your application dll and its depedencies.
+The `./src/JhipsterSampleApplication/app/out` directory will contain your application dll and its depedencies.
 
 ## Testing
 
@@ -105,7 +105,7 @@ Manually :
 
 `dotnet tool install --global dotnet-sonarscanner`
 
-3. Run ``dotnet sonarscanner begin /d:sonar.login=admin /d:sonar.password=admin /k:"Jhipster" /d:sonar.host.url="http://localhost:9001" /s:"`pwd`/SonarQube.Analysis.xml"``
+3. Run ``dotnet sonarscanner begin /d:sonar.login=admin /d:sonar.password=admin /k:"JhipsterSampleApplication" /d:sonar.host.url="http://localhost:9001" /s:"`pwd`/SonarQube.Analysis.xml"``
 
 4. Build your application : `dotnet build`
 
@@ -130,21 +130,21 @@ Manually :
 You can also fully dockerize your application and all the services that it depends on. To achieve this, first build a docker image of your app by running:
 
 ```bash
-docker build -f ./Dockerfile-Back -t jhipster .
+docker build -f ./Dockerfile-Back -t jhipstersampleapplication .
 ```
 
 ```bash
-docker build -f ./Dockerfile-Front -t jhipster-front .
+docker build -f ./Dockerfile-Front -t jhipstersampleapplication-front .
 ```
 
 Then run:
 
 ```bash
-docker run -p 8080:80 jhipster
+docker run -p 8080:8080 jhipstersampleapplication
 ```
 
 ```bash
-docker run -p 8081:80 -e ServerUrl=https://localhost:8080 jhipster-front
+docker run -p 8081:80 -e ServerUrl=https://localhost:8080 jhipstersampleapplication-front
 ```
 
 Or you can simply run :
@@ -160,12 +160,12 @@ docker compose -f .\docker\app.yml up
 ```
 
 [JHipster Homepage and latest documentation]: https://www.jhipster.tech
-[JHipster 7.8.1 archive]: https://www.jhipster.tech/documentation-archive/v7.8.1
-[Using JHipster in development]: https://www.jhipster.tech/documentation-archive/v7.8.1/development/
-[Using Docker and Docker-Compose]: https://www.jhipster.tech/documentation-archive/v7.8.1/docker-compose
-[Using JHipster in production]: https://www.jhipster.tech/documentation-archive/v7.8.1/production/
-[Running tests page]: https://www.jhipster.tech/documentation-archive/v7.8.1/running-tests/
-[Code quality page]: https://www.jhipster.tech/documentation-archive/v7.8.1/code-quality/
-[Setting up Continuous Integration]: https://www.jhipster.tech/documentation-archive/v7.8.1/setting-up-ci/
+[JHipster 8.8.0 archive]: https://www.jhipster.tech/documentation-archive/v8.8.0
+[Using JHipster in development]: https://www.jhipster.tech/documentation-archive/v8.8.0/development/
+[Using Docker and Docker-Compose]: https://www.jhipster.tech/documentation-archive/v8.8.0/docker-compose
+[Using JHipster in production]: https://www.jhipster.tech/documentation-archive/v8.8.0/production/
+[Running tests page]: https://www.jhipster.tech/documentation-archive/v8.8.0/running-tests/
+[Code quality page]: https://www.jhipster.tech/documentation-archive/v8.8.0/code-quality/
+[Setting up Continuous Integration]: https://www.jhipster.tech/documentation-archive/v8.8.0/setting-up-ci/
 [Node.js]: https://nodejs.org/
 [NPM]: https://www.npmjs.com/

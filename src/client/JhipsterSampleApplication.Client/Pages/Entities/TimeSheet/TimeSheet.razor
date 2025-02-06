@@ -1,0 +1,102 @@
+@page "/timesheet"
+@using Microsoft.AspNetCore.Authorization
+@using JhipsterSampleApplication.Client.Shared.Components
+@namespace JhipsterSampleApplication.Client.Pages.Entities.TimeSheet
+
+@attribute [Authorize(Roles = "ROLE_USER")]
+
+<div>
+    <h2 id="page-heading">
+        <span>TimeSheets</span>
+
+        <Div Class="d-flex justify-content-end">
+            <a id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-timesheet" href="/timesheet/new">
+                <Icon Name='"fa-plus"' />
+                <span class="hidden-sm-down">
+                    Create a new TimeSheet
+                </span>
+            </a>
+        </Div>
+    </h2>
+
+    @*<jhi-alert-error></jhi-alert-error>
+            TODO ADD ALERT
+        <jhi-alert></jhi-alert>*@
+        <AlertError></AlertError>
+
+
+    @* TODO ADD QUERY SEARCH BAR
+            <div class="row">
+            <div class="col-sm-12">
+                <form name="searchForm" class="form-inline">
+                    <div class="input-group w-100 mt-3">
+                        <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Query">
+                        <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
+                            <fa-icon icon="search"></fa-icon>
+                        </button>
+                        <button class="input-group-append btn btn-danger" (click)="search('')" *ngIf="currentSearch">
+                            <fa-icon icon="trash-alt"></fa-icon>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>*@
+
+
+    @if (TimeSheets.Count == 0)
+    {
+        <div class="alert alert-warning" id="no-result">
+            <span>No TimeSheets found</span>
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive table-entities" id="entities">
+            <table class="table table-striped" aria-describedby="page-heading">
+                <thead>
+                    <tr>
+                        <th scope="col"><span>ID</span></th>
+                        <th scope="col"><span>Time Sheet Date</span></th>
+                        <th scope="col"><span>Employee</span></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var timesheet in TimeSheets)
+                    {
+                        <tr>
+                            <td><a href="/timesheet/@timesheet.Id/view">@timesheet.Id</a></td>
+                            <td>@timesheet.TimeSheetDate</td>
+                            <td>
+                                @if (timesheet.EmployeeId != 0)
+                                {
+                                    <div>
+                                        <a href="/employee/@timesheet.EmployeeId/view">@timesheet.EmployeeId</a>
+                                    </div>
+                                }
+                            </td>
+                            <td class="text-end">
+                                <div class="btn-group">
+                                    <a href="/timesheet/@timesheet.Id/view" class="btn btn-info btn-sm">
+                                        <Icon Name='"fa-eye"'/>
+                                        <span class="d-none d-md-inline">View</span>
+                                    </a>
+
+                                    <a href="/timesheet/@timesheet.Id/edit" class="btn btn-primary btn-sm">
+                                        <Icon Name='"fa-pencil-alt"'/>
+                                        <span class="d-none d-md-inline">Edit</span>
+                                    </a>
+
+                                    <button @onclick="() => Delete(timesheet.Id)" class="btn btn-danger btn-sm">
+                                        <Icon Name='"fa-times"'/>
+                                        <span class="d-none d-md-inline">Delete</span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

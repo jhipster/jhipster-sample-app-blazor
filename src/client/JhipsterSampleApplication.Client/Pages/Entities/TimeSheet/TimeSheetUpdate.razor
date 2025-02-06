@@ -1,0 +1,63 @@
+@page "/timesheet/new"
+@page "/timesheet/{Id:Guid}/edit"
+@using Microsoft.AspNetCore.Authorization
+
+@namespace JhipsterSampleApplication.Client.Pages.Entities.TimeSheet
+
+@attribute [Authorize(Roles = "ROLE_USER")]
+
+<div class="d-flex justify-content-center">
+    <div class="col-8">
+        <EditForm Model="@TimeSheetModel" OnValidSubmit="@Save">
+            <h2 id="jhi-timesheet-heading">Create or edit a TimeSheet</h2>
+            <div>
+                @*
+                    TODO ADD ERROR
+                    <jhi-alert-error></jhi-alert-error>
+                *@
+
+                @if (Id != null)
+                {
+                    <div row mb-3>
+                        <label for="id">ID</label>
+                        <input type="text" class="form-control" id="id" name="id" readonly @bind-value="@TimeSheetModel.Id" />
+                    </div>
+                }
+
+                <div row mb-3>
+                    <label class="form-label" for="field_timeSheetDate">Time Sheet Date</label>
+                    <input type="text" class="form-control" name="timeSheetDate" id="field_timeSheetDate"
+                            @bind-value="@TimeSheetModel.TimeSheetDate" />
+                </div>
+
+                <div row mb-3>
+                    <label class="form-label" for="field_employee">Employees</label>
+                    <select class="form-control" id="field_employee" name="employee" @bind="@EmployeeId">
+                        <option value="0"></option>
+                        @foreach (var employee in EmployeeIds)
+                        {
+                            if (Id != null&& employee == TimeSheetModel?.EmployeeId)
+                            {
+                                <option selected="selected">@employee</option>
+                            }
+                            else
+                            {
+                                <option>@employee</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" @onclick="Back">
+                    <Icon Name='"fa-ban"' />&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" class="btn btn-primary">
+                    <Icon Name='"fa-save"' />&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </EditForm>
+    </div>
+</div>
